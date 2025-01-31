@@ -367,6 +367,7 @@ body:has(#nav:popover-open) #nav-trigger {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: var(--sitePadding);
 }
 .authcard {
   padding: 2rem;
