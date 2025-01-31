@@ -255,8 +255,13 @@ body:has(#nav:popover-open) #nav-trigger {
   display: block;
   width: calc(var(--navWidth) - var(--navPadding) * 2);
   aspect-ratio: 1;
-  object-fit: contain;
   overflow: hidden;
+}
+.nav-preview > svg {
+  object-fit: contain;
+}
+.nav-preview > img {
+  object-fit: cover;
 }
 .nav-reveal {
   /* Hidden while navbar is collapsed */
@@ -301,6 +306,9 @@ body:has(#nav:popover-open) #nav-trigger {
   width: 100%;
   height: 100%;
   color: var(--clrBorder);
+}
+img.ac-avatar {
+  object-fit: cover;
 }
 .ac-pending {
   border-top-color: var(--clrPrimary);
