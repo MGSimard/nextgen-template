@@ -112,6 +112,7 @@ ul.dash-list li::before {
   content: "- ";
 }
 button {
+  font-family: inherit;
   border: none;
 }
 button:not(:disabled) {
