@@ -138,13 +138,6 @@ table {
   border: none;
   height: auto;
 }
-#not-found,
-#sign-in {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 .link {
   color: var(--clrPrimary);
 }
