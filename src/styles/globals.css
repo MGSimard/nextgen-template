@@ -52,6 +52,7 @@ main {
   min-height: 10rem;
   color: var(--clrDetail);
   font-weight: 100;
+  text-align: center;
 }
 #header-content,
 .section-content,
