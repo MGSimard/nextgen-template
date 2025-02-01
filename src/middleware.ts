@@ -12,12 +12,17 @@ export default async function authMiddleware(request: NextRequest) {
     },
   });
 
-  if (!session) {
+  if (session && request.nextUrl.pathname === "/sign-in") {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
+  }
+
+  if (!session && request.nextUrl.pathname.startsWith("/dashboard")) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: ["/sign-in", "/dashboard/:path*"],
 };

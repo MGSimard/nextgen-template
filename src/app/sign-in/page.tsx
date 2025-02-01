@@ -1,13 +1,6 @@
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
-import { auth } from "@/server/auth";
-import { Section } from "@/components/Section";
 import { SignInButtons } from "@/components/SignInButtons";
 
-export default async function PageSignIn() {
-  const session = await auth.api.getSession({ headers: await headers() });
-  if (session) redirect("/dashboard");
-
+export default function PageSignIn() {
   return (
     <main id="sign-in">
       <div className="authcard">
