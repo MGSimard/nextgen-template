@@ -103,8 +103,8 @@ For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
 
 - PREVENTING BACKROUTING TO MIDDLEWARE-PROTECTED ROUTES:
   - Create a server action `export async function revalidateCache(route:string , mode?: "layout" | "page"){ revalidatePath(route, mode ?? undefined) }`
-  - For signIn button/method, import the server action and run `await revalidateCache("/sign-in")`
-  - For signOut button/method, import the server action and run `await revalidateCache("/dashboard", "layout")`
+  - For signIn button/method, import the server action and within signIn's onSuccess run `await revalidateCache("/sign-in")`
+  - For signOut button/method, import the server action and within signOut's onSuccess run `await revalidateCache("/dashboard", "layout")`
   - This should force cache clearing of those routes which prevents backrouting after logging in/out
   - You should still keep middleware auth protect (already set in this template) for direct access authchecks
 
