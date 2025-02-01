@@ -95,6 +95,8 @@ For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
 
 ## TASK LIST
 
+- [ ] Find a way to prevent backrouting to cached dashboard after logging out (multi-user device security)
+- [ ] Middleware, async page auth check, no-store, idk, look into it.
 - [ ] User settings page
 - [ ] Account/User deletion
 - [ ] Figure out visual loading state to middleware protected routes
