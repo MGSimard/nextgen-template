@@ -4,6 +4,7 @@ import Link from "next/link";
 import { authClient } from "@/server/auth/auth-client";
 import { toast } from "sonner";
 import { IconCog, IconSignIn, IconSignOut, IconUser } from "@/components/Icons";
+import { revalidateCache } from "@/server/actions";
 
 export function NavUser({ hideNav }: { hideNav: () => void }) {
   const router = useRouter();
@@ -39,8 +40,9 @@ export function NavUser({ hideNav }: { hideNav: () => void }) {
                 onClick={async () =>
                   await authClient.signOut({
                     fetchOptions: {
-                      onSuccess: () => {
+                      onSuccess: async () => {
                         toast.success("Signed out successfully.");
+                        await revalidateCache("/dashboard", "layout");
                         router.push("/");
                       },
                     },

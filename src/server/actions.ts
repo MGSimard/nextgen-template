@@ -2,6 +2,7 @@
 import { db } from "@/server/db";
 import { auth } from "@/server/auth";
 import { headers } from "next/headers";
+import { revalidatePath } from "next/cache";
 
 /**
  * To verify if user is authenticated:
@@ -14,3 +15,7 @@ import { headers } from "next/headers";
  * const { data: session, isPending, error } = authClient.useSession()
  * if (!session) do stuff;
  */
+
+export async function revalidateCache(route: string, mode?: "layout" | "page") {
+  revalidatePath(route, mode ?? undefined);
+}
