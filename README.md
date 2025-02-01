@@ -93,6 +93,21 @@ Mail: [mgsimard.dev@gmail.com](mailto:mgsimard.dev@gmail.com)
 
 For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
 
+## Issues with Better Auth
+
+- No server-side Sign In/Sign Out methods - Why? Can't use authClient in server to also match with revalidatePath() on logout, this makes things messy.
+- No callbackURL for Sign Out method - Why? We need the hard refresh in situations where you want to prevent backrouting to a dashboard etc.
+- Full-on API fetches on every useSession call - Why? Why not just check for cookies and only fetch when not valid? This creates bad performance.
+
+## Solutions to Better Auth
+
+- PREVENTING BACKROUTING TO MIDDLEWARE-PROTECTED ROUTES:
+  - Create a server action `export async function revalidateCache(route:string , mode?: "layout" | "page"){ revalidatePath(route, mode ?? undefined) }`
+  - For signIn button/method, import the server action and run `await revalidateCache("/sign-in")`
+  - For signOut button/method, import the server action and run `await revalidateCache("/dashboard", "layout")`
+  - This should force cache clearing of those routes which prevents backrouting after logging in/out
+  - You should still keep middleware auth protect (already set in this template) for direct access authchecks
+
 ## TASK LIST
 
 - [ ] Lazy load dashboard
@@ -102,9 +117,3 @@ For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
 - [ ] Account/User deletion
 - [ ] Figure out visual loading state to middleware protected routes
 - [ ] App-wide cleanup
-
-## Issues with Better Auth
-
-- No server-side Sign In/Sign Out methods - Why? Can't use authClient in server to also match with revalidatePath() on logout.
-- No callbackURL for Sign Out method - Why? We need the hard refresh in situations where you want to prevent backrouting to a dashboard etc.
-- Full-on API fetches on every useSession call - Why? Why not just check for cookies and only fetch when not valid?
