@@ -2,9 +2,6 @@ import { Header } from "@/components/Header";
 import { Section } from "@/components/Section";
 
 export default function PageHome() {
-  const value = "  ";
-  console.log(value);
-
   return (
     <>
       <Header>
