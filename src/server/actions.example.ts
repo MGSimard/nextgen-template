@@ -86,7 +86,7 @@ const CreatePostSchema = z.object({
 });
 export async function createPost(currentState: FormStatusTypes, formData: FormData) {
   const session = await auth.api.getSession({ headers: await headers() });
-  if (!session) throw new Error("AUTH ERROR: Unauthorized.");
+  if (!session) return { success: false, message: "AUTH ERROR: Unauthorized." };
 
   const { success: rlOK, message: rlMessage } = await ratelimit("mutate", await getClientIP(), session?.user.id);
   if (!rlOK) return { success: false, message: rlMessage };
