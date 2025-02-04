@@ -74,7 +74,7 @@ interface FormResponseTypes {
   message: string;
   errors?: string[];
 }
-export type FormStatusTypes = FormResponseTypes | null;
+type FormStatusTypes = FormResponseTypes | null;
 const CreatePostSchema = z.object({
   targetBlog: z.string().trim().max(40),
   postTitle: z
@@ -84,7 +84,7 @@ const CreatePostSchema = z.object({
     .max(60, "Post title cannot exceed 60 characters.")
     .regex(/^[^\\/:*?"<>|]+$/, 'Post title cannot contain any of the following characters: \\/:*?"<>|'),
 });
-export async function createPost(currentState: FormStatusTypes, formData: FormData) {
+/*export*/ async function createPost(currentState: FormStatusTypes, formData: FormData) {
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session) return { success: false, message: "AUTH ERROR: Unauthorized." };
 
