@@ -132,6 +132,12 @@ const techStack = [
   ["t3-oss/env", "0.12.0", ".env Type Safety", "https://create.t3.gg/en/usage/env-variables", "create.t3.gg"],
   ["pnpm", "9.15.4", "Package Manager", "https://pnpm.io/motivation", "pnpm.io"],
   ["Vercel", "-", "Hosting", "https://vercel.com/docs", "vercel.com"],
-  ["next-themes", "0.4.4", "Themes", "https://github.com/pacocoursey/next-themes", "gh/pacocoursey/next-themes"],
+  [
+    "next-themes",
+    "0.4.4",
+    "Themes",
+    "https://github.com/pacocoursey/next-themes",
+    "github.com/pacocoursey/next-themes",
+  ],
   ["Sonner", "1.7.4", "UI Notifications", "https://sonner.emilkowal.ski/getting-started", "sonner.emilkowal.ski"],
 ];

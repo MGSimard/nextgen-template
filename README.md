@@ -13,21 +13,23 @@ Its main purpose is for quickstarting my own personal projects with a bleeding e
 
 <tr><td>
 
-| Tech        | Version | Info                  | Documentation                                                    |
-| ----------- | ------- | --------------------- | ---------------------------------------------------------------- |
-| Next.js     | 15.1.6  | FullStack Environment | [nextjs.org](https://nextjs.org/docs)                            |
-| React       | 19.0.0  | Compiler Enabled      | [react.dev](https://react.dev/)                                  |
-| TypeScript  | 5.7.3   | Type Safety           | [typescriptlang.org](https://www.typescriptlang.org/docs/)       |
-| Neon        | 0.10.4  | Database              | [neon.tech](https://neon.tech/docs/introduction)                 |
-| PostgreSQL  | 3.4.5   | Database Management   | [postgresql.org](https://www.postgresql.org/docs/)               |
-| Drizzle     | 0.38.4  | ORM                   | [orm.drizzle.team](https://orm.drizzle.team/docs/overview)       |
-| Drizzle Kit | 0.30.2  | Database Migration    | [orm.drizzle.team](https://orm.drizzle.team/docs/kit-overview)   |
-| Better Auth | 1.1.14  | Authentication        | [better-auth.com](https://www.better-auth.com/docs/introduction) |
-| Zod         | 3.24.1  | Validation            | [zod.dev](https://zod.dev/)                                      |
-| ESLint      | 9.18.0  | Flat Config           | [eslint.org](https://eslint.org/docs/latest/)                    |
-| t3-oss/env  | 0.10.1  | .env Type Safety      | [create.t3.gg](https://create.t3.gg/en/usage/env-variables)      |
-| pnpm        | 9.15.4  | Package Manager       | [pnpm.io](https://pnpm.io/motivation)                            |
-| Vercel      | -       | Hosting               | [vercel.com](https://vercel.com/docs)                            |
+| Tech        | Version | Info                  | Documentation                                                                    |
+| ----------- | ------- | --------------------- | -------------------------------------------------------------------------------- |
+| Next.js     | 15.1.6  | FullStack Environment | [nextjs.org](https://nextjs.org/docs)                                            |
+| React       | 19.0.0  | Compiler Enabled      | [react.dev](https://react.dev/)                                                  |
+| TypeScript  | 5.7.3   | Type Safety           | [typescriptlang.org](https://www.typescriptlang.org/docs/)                       |
+| Neon        | 0.10.4  | Database              | [neon.tech](https://neon.tech/docs/introduction)                                 |
+| PostgreSQL  | 3.4.5   | Database Management   | [postgresql.org](https://www.postgresql.org/docs/)                               |
+| Drizzle     | 0.39.2  | ORM                   | [orm.drizzle.team](https://orm.drizzle.team/docs/overview)                       |
+| Drizzle Kit | 0.30.4  | Database Migration    | [orm.drizzle.team](https://orm.drizzle.team/docs/kit-overview)                   |
+| Better Auth | 1.1.16  | Authentication        | [better-auth.com](https://www.better-auth.com/docs/introduction)                 |
+| Zod         | 3.24.1  | Validation            | [zod.dev](https://zod.dev/)                                                      |
+| ESLint      | 9.19.0  | Flat Config           | [eslint.org](https://eslint.org/docs/latest/)                                    |
+| t3-oss/env  | 0.12.0  | .env Type Safety      | [create.t3.gg](https://create.t3.gg/en/usage/env-variables)                      |
+| pnpm        | 9.15.4  | Package Manager       | [pnpm.io](https://pnpm.io/motivation)                                            |
+| Vercel      | -       | Hosting               | [vercel.com](https://vercel.com/docs)                                            |
+| next-themes | 0.4.4   | Themes                | [github.com/pacocoursey/next-themes](https://github.com/pacocoursey/next-themes) |
+| Sonner      | 1.7.4   | UI Notifications      | [sonner.emilkowal.ski](https://sonner.emilkowal.ski/getting-started)             |
 
 </td></tr> </table>
 
@@ -110,10 +112,7 @@ For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
 
 ## TASK LIST
 
-- [ ] Lazy load dashboard
-- [ ] Find a way to prevent backrouting to cached dashboard after logging out (multi-user device security)
-- [ ] Middleware, async page auth check, no-store, idk, look into it.
 - [ ] User settings page
 - [ ] Account/User deletion
-- [ ] Figure out visual loading state to middleware protected routes
+- [ ] Figure out visual loading state to middleware protected routes (might devolve into layout/route auth instead of middleware tbh)
 - [ ] App-wide cleanup
