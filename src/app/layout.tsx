@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
 import { NavTrigger } from "@/components/NavTrigger";
 import { Nav } from "@/components/Nav";
@@ -15,13 +16,15 @@ export const metadata: Metadata = siteMetadata;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${geistSans.className} ${geistMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`${geistSans.className} ${geistMono.variable}`}>
       <body>
-        <Toaster richColors toastOptions={{ className: "sonner-card" }} />
-        <NavTrigger />
-        <Nav />
-        {children}
-        <Footer />
+        <ThemeProvider disableTransitionOnChange>
+          <Toaster richColors toastOptions={{ className: "sonner-card" }} />
+          <NavTrigger />
+          <Nav />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

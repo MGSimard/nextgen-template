@@ -2,9 +2,10 @@
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { authClient } from "@/server/auth/auth-client";
-import { toast } from "sonner";
-import { IconCog, IconSignIn, IconSignOut, IconUser } from "@/components/Icons";
 import { revalidateCache } from "@/server/actions";
+import { toast } from "sonner";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { IconCog, IconSignIn, IconSignOut, IconUser } from "@/components/Icons";
 
 export function NavUser({ hideNav }: { hideNav: () => void }) {
   const router = useRouter();
@@ -27,6 +28,7 @@ export function NavUser({ hideNav }: { hideNav: () => void }) {
           {isPending ? "Loading..." : session ? session.user.name || session.user.email : "Guest"}
         </span>
         <div className="ac-buttons">
+          <ThemeToggle />
           {session ? (
             <>
               <button type="button" aria-label="Settings" title="Settings" disabled>
