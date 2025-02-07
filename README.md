@@ -97,9 +97,8 @@ For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
 
 ## Issues with Better Auth
 
-- No server-side Sign In/Sign Out methods - Why? Can't use authClient in server to also match with revalidatePath() on logout, this makes things messy.
-- No callbackURL for Sign Out method - Why? We need the hard refresh in situations where you want to prevent backrouting to a dashboard etc.
-- Full-on API fetches on every useSession call - Why? Why not just check for cookies and only fetch when not valid? This creates bad performance.
+- No server-side Sign In/Sign Out methods. Can't use authClient in server to also match with revalidatePath() on logout, this makes things messy having to call it separately.
+- No callbackURL for Sign Out method.
 
 ## Solutions to Better Auth
 
