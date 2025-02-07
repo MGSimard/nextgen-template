@@ -1,23 +1,17 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { betterFetch } from "@better-fetch/fetch";
-import type { auth } from "@/server/auth";
-
-type Session = typeof auth.$Infer.Session;
+import { getSessionCookie } from "better-auth";
 
 export default async function authMiddleware(request: NextRequest) {
-  const { data: session } = await betterFetch<Session>("/api/auth/get-session", {
-    baseURL: request.nextUrl.origin,
-    headers: {
-      cookie: request.headers.get("cookie") ?? "",
-    },
-  });
+  const reqPath = request.nextUrl.pathname;
 
-  if (session && request.nextUrl.pathname === "/sign-in") {
-    return NextResponse.redirect(new URL("/dashboard", request.url));
+  const cookies = getSessionCookie(request);
+
+  if (!cookies && reqPath.startsWith("/dashboard")) {
+    return NextResponse.redirect(new URL("/sign-in", request.url));
   }
 
-  if (!session && request.nextUrl.pathname.startsWith("/dashboard")) {
-    return NextResponse.redirect(new URL("/sign-in", request.url));
+  if (cookies && reqPath === "/sign-in") {
+    return NextResponse.redirect(new URL("/dashboard", request.url));
   }
 
   return NextResponse.next();
