@@ -23,7 +23,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" suppressHydrationWarning className={`${geistSans.className} ${geistMono.variable}`}>
       <body>
-        <ThemeProvider disableTransitionOnChange>
+        <ThemeProvider disableTransitionOnChange defaultTheme="system" enableSystem>
           <Toaster richColors toastOptions={{ className: "sonner-card" }} />
           <NavTrigger />
           <Nav />
