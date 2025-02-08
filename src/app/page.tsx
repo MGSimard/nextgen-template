@@ -15,7 +15,7 @@ export default function PageHome() {
             .
           </span>
         </h1>
-        <a href="#tech-stack" className="chevron-anchor" aria-label="Scroll down">
+        <a href="#about" className="chevron-anchor" aria-label="Scroll down">
           <IconChevron />
         </a>
       </Header>
