@@ -1,3 +1,10 @@
+:root {
+  --siteMaxWidth: 1440px;
+  --sitePadding: 2rem;
+  --navWidth: 6rem;
+  --navPadding: 1rem;
+  --headerHeight: 12rem;
+}
 :root[data-theme="dark"] {
   --clrPrimary: hsl(0, 95%, 62%); /* Imperial Red */
   --clrBg: hsl(240, 11%, 7%); /* Night */
@@ -19,13 +26,6 @@
   --clrScroll: hsl(240, 3%, 19%);
   --clrBorder: hsl(0, 0%, 0%);
   --clrHover: hsl(0, 0%, 76%);
-}
-:root {
-  --siteMaxWidth: 1440px;
-  --sitePadding: 2rem;
-  --navWidth: 6rem;
-  --navPadding: 1rem;
-  --headerHeight: 12rem;
 }
 * {
   margin: 0;
