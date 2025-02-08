@@ -396,6 +396,61 @@ img.ac-avatar {
 .tech-table tr td:first-child {
   font-weight: 600;
 }
+/* HERO-TYPE HEADER (HOME)*/
+.hero #header-content {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100dvh;
+  text-align: center;
+  font-size: min(4vw, 80dvh);
+}
+.hero h1 {
+  position: relative;
+  animation: fadeblur 2s ease-out forwards;
+}
+@keyframes fadeblur {
+  0% {
+    opacity: 0;
+    filter: blur(50);
+  }
+  100% {
+    opacity: 1;
+    filter: unset;
+  }
+}
+#hero1,
+#hero2,
+#hero3 {
+  filter: drop-shadow(0 0 0.3rem);
+}
+#hero2 {
+  color: var(--clrPrimary);
+}
+:root[data-theme="light"] #hero1,
+:root[data-theme="light"] #hero2,
+:root[data-theme="light"] #hero3 {
+  filter: none;
+}
+.chevron-anchor {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  bottom: 2rem;
+  left: 50%;
+  display: block;
+  width: 8rem;
+  height: 8rem;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  opacity: 0.2;
+}
+.chevron-anchor:hover,
+.chevron-anchor:focus-visible {
+  color: var(--clrText);
+  opacity: 1;
+}
 /**/
 /* SIGN IN PAGE/CARD */
 #sign-in {

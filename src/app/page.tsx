@@ -1,14 +1,26 @@
 import { Header } from "@/components/Header";
 import { Section } from "@/components/Section";
+import { IconChevron } from "@/components/Icons";
 
 export default function PageHome() {
   return (
     <>
-      <Header>
-        <h1>NextGen Template</h1>
+      <Header className="hero noselect">
+        <h1>
+          <span id="hero1">Next</span>
+          <span id="hero2" className="clr-primary">
+            Gen
+          </span>
+          <span id="hero3" className="blink">
+            .
+          </span>
+        </h1>
+        <a href="#tech-stack" className="chevron-anchor" aria-label="Scroll down">
+          <IconChevron />
+        </a>
       </Header>
       <main>
-        <Section>
+        <Section id="about">
           <h2>About</h2>
           <p>
             NextGen is a Next.js template by @MGSimard partly based on{" "}
