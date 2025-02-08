@@ -135,7 +135,7 @@ const techStack = [
   [
     "next-themes",
     "0.4.4",
-    "Themes",
+    "Theme Toggling",
     "https://github.com/pacocoursey/next-themes",
     "github.com/pacocoursey/next-themes",
   ],

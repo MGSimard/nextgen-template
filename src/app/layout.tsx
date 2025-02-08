@@ -11,7 +11,12 @@ import "@/styles/globals.css";
 const geistSans = Geist({ subsets: ["latin"], display: "swap" });
 const geistMono = Geist_Mono({ variable: "--GeistMono", subsets: ["latin"], display: "swap" });
 
-export const viewport: Viewport = { themeColor: "#fa4242" };
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#1f1b79" }, // Light theme primary color
+    { media: "(prefers-color-scheme: dark)", color: "#fa4242" }, // Dark theme primary color
+  ],
+};
 export const metadata: Metadata = siteMetadata;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

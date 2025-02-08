@@ -28,7 +28,7 @@ Its main purpose is for quickstarting my own personal projects with a bleeding e
 | t3-oss/env  | 0.12.0  | .env Type Safety      | [create.t3.gg](https://create.t3.gg/en/usage/env-variables)                      |
 | pnpm        | 9.15.4  | Package Manager       | [pnpm.io](https://pnpm.io/motivation)                                            |
 | Vercel      | -       | Hosting               | [vercel.com](https://vercel.com/docs)                                            |
-| next-themes | 0.4.4   | Themes                | [github.com/pacocoursey/next-themes](https://github.com/pacocoursey/next-themes) |
+| next-themes | 0.4.4   | Theme Toggling        | [github.com/pacocoursey/next-themes](https://github.com/pacocoursey/next-themes) |
 | Sonner      | 1.7.4   | UI Notifications      | [sonner.emilkowal.ski](https://sonner.emilkowal.ski/getting-started)             |
 
 </td></tr> </table>
@@ -111,6 +111,7 @@ For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
 
 ## TASK LIST
 
+- [ ] Fix initial theme toggle icon render on default system
 - [ ] User settings page
 - [ ] Account/User deletion
 - [ ] Figure out visual loading state to middleware protected routes (might devolve into layout/route auth instead of middleware tbh)
