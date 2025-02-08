@@ -111,7 +111,6 @@ For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
 
 ## TASK LIST
 
-- [ ] Fix initial theme toggle icon render on default system
 - [ ] User settings page
 - [ ] Account/User deletion
 - [ ] Figure out visual loading state to middleware protected routes (might devolve into layout/route auth instead of middleware tbh)
