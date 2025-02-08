@@ -128,6 +128,7 @@ export function IconNextGen() {
         />
         <rect x="115" y="54" width="12" height="72" fill="url(#paint1_linear_408_139)" />
         <path
+          id="nav-logo-accent"
           fill="currentColor"
           d="m 133.05664,84.434846 v 12.113281 h -12.11328 v 12.113283 h 12.11328 v 12.11524 h 12.11524 v -12.11524 h 12.11328 V 96.548127 H 145.17188 V 84.434846 Z"
         />
@@ -140,8 +141,8 @@ export function IconNextGen() {
           x2="144.5"
           y2="160.5"
           gradientUnits="userSpaceOnUse">
-          <stop stopColor="white" />
-          <stop offset="1" stopColor="white" stopOpacity="0" />
+          <stop stopColor="currentColor" />
+          <stop offset="1" stopColor="currentColor" stopOpacity="0" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_408_139"
@@ -150,8 +151,8 @@ export function IconNextGen() {
           x2="120.799"
           y2="106.875"
           gradientUnits="userSpaceOnUse">
-          <stop stopColor="white" />
-          <stop offset="1" stopColor="white" stopOpacity="0" />
+          <stop stopColor="currentColor" />
+          <stop offset="1" stopColor="currentColor" stopOpacity="0" />
         </linearGradient>
       </defs>
     </svg>

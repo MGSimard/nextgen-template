@@ -329,8 +329,11 @@ body:has(#nav:popover-open) #nav-trigger {
   overflow: hidden;
   transition: all 0.2s ease;
 }
-#nav-logo svg,
-#nav-logo img {
+#nav-logo {
+  font-family: var(--GeistMono);
+  font-weight: 500;
+}
+#nav-logo-accent {
   color: var(--clrPrimary);
 }
 #nav-links {
