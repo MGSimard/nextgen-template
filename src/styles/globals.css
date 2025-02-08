@@ -36,6 +36,12 @@ html {
   font-size: 62.5%;
   color: var(--clrText);
   background-color: var(--clrBg);
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 body {
   display: flex;
