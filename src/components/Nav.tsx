@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { NavUser } from "@/components/NavUser";
-import { IconComputer, IconHome, IconNewspaper, IconNextGen, IconWarning } from "@/components/Icons";
+import { IconComputer, IconGitHub, IconHome, IconNewspaper, IconNextGen, IconWarning } from "@/components/Icons";
 
 export function Nav() {
   const pathname = usePathname();
@@ -47,6 +47,16 @@ export function Nav() {
               </Link>
             </li>
           ))}
+          <li>
+            <a
+              href="https://github.com/MGSimard/nextgen-template"
+              target="_blank"
+              onClick={hideNav}
+              className="nav-preview">
+              <IconGitHub />
+              <span className="nav-reveal">GitHub</span>
+            </a>
+          </li>
         </ul>
       </div>
       <NavUser hideNav={hideNav} />
