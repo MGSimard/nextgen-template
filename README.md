@@ -41,7 +41,108 @@ Its main purpose is for quickstarting my own personal projects with a bleeding e
 <li>Newer versions of Drizzle Kit have been bugged with multi-project schema setups for a while now. Though it fails to, <a href="https://github.com/drizzle-team/drizzle-orm/issues/3320#issuecomment-2461087002">migration actively attempts to drop your sequences.</a></li>
 </ol>
 </details>
-<br/>
+
+<details><summary>Better Auth issue: Disabling user registration.</summary>
+
+If you decide to use Email & Password you should know that your sign-up endpoint becomes publicly accessible by default, meaning anyone can create an account regardless of whether or not you give them an accessible, programmatic way to do so from within the application.
+
+- While emailAndPassword is enabled in your auth config, the `/api/sign-up/email` endpoint becomes accessible by default.
+- This means even if you offer no way for users to sign up in say, a private application, they can still create an account by hitting up your hitting your sign-up endpoint with a POST request to http://example.com/api/auth/sign-up/email with email/password/name in the request body.
+
+In order to prevent this, should you choose to lock down registration, Better Auth does not currently have a betterAuth() flag to do this easily. Instead you have to intercept the API request with an auth middleware and reject their request. You can add the code below to your betterAuth config alongside database:{}, session: {}, etc:
+
+```
+  hooks: {
+    before: createAuthMiddleware(async (ctx) => {
+      if (ctx.path.startsWith("/sign-up")) {
+        return NextResponse.json({ error: "ERROR: Registration disabled." }, { status: 401 });
+      }
+    }),
+  },
+```
+
+For Better Auth devs:
+
+- Add a `signUpsEnabled` flag that defaults to `TRUE`, make options `TRUE`, `FALSE` and array of role strings _(so admins can still create accounts on behalf of users)._
+- Currently, while emailAndPassword are disabled, the sign-up/email API endpoint does respond with an error and prevent sign ups, however why include the endpoint at all if the feature is completely disabled? Not necessarily a big deal, but if everyone stops caring about a little bloat here and there, it builds up to a lot of bloat.
+
+</details>
+
+<details>
+<summary>Better Auth/Next.js issue: Clearing cache for protected routes after Sign In/Out.</summary>
+
+Usually this is fairly simple when running these methods purely on-server with libraries like Lucia which have better server-sided method documentation. However, Better Auth docs only recommends Sign In/Out methods using the client-side authClient function.
+
+This is partly a Better Auth issue, and partly a Next.js issue. I'm of the opinion that Sign In/Out should be restricted to server function uses _(which I assume they've abstracted away through authClient)_, where there's less concern over fragmentation of the process and having direct shared access with server-side cache invalidation. Though if Next.js had better client-side cache invalidation methods like a revalidatePath("/path") equivalent, Better Auth's design choice would be slightly less of an issue. Think something along the lines of router.clearCache("/path"), instead of being forced to use a blank router.refresh().
+
+When using authClient.signIn/Out(), you have two clear methods of handling clearing cache, in order to prevent a user from backrouting into a cached version of an auth-protected page, leaking potentially secret information. _(Or just preventing them from returning to a cached sign-in page after logging in.)_
+
+### 1. router.push() + separate revalidatePath() from a server action.
+
+With this method, backrouting will flash the old URL in the bar prior to your middleware/route redirection logic, but you won't actually return to a cached page. You also retain control of redirect target, independent of the middleware or route redirection logic.
+
+```
+<button
+  type="button"
+  aria-label="Sign Out"
+  title="Sign out"
+  onClick={async () =>
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: async () => {
+        toast.success("Signed out successfully.");
+        await revalidateCache("/dashboard", "layout");
+        router.push("/");
+      },
+    },
+  })
+}>
+
+// server/actions.ts
+export async function revalidateCache(route: string, mode?: "layout" | "page") {
+  revalidatePath(route, mode ?? undefined);
+}
+```
+
+### 2. router.refresh(), less code but lose agency over granular redirect.
+
+This version will not have a URL flash on backrouting attempts, but you lose control of the redirect path - therefore limited to what you had set within middleware or route redirection logic.
+
+```
+<button
+  type="button"
+  aria-label="Sign Out"
+  title="Sign out"
+  onClick={async () =>
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: async () => {
+        toast.success("Signed out successfully.");
+        await revalidateCache("/dashboard", "layout");
+        router.push("/");
+      },
+    },
+  })
+}>
+
+// server/actions.ts
+export async function revalidateCache(route: string, mode?: "layout" | "page") {
+  revalidatePath(route, mode ?? undefined);
+}
+```
+
+### 3. Avoid authClient usage entirely
+
+Your third option is to avoid authClient. You can instead opt to set & delete cookies manually from within a server action, which invalidates the cache to avoid stale cookies. As stated the Better Auth docs regarding this specific process are incomplete, so I personally haven't checked on how to ensure everything stays synced.
+
+</details>
+
+<details>
+<summary>Better Auth issue: No callbackURL for Sign Out method.</summary>
+
+You could argue this is more of a nitpick, but the entire cache clearing setup could really just be run through a built-in callbackURL or redirectURL method on signOut. I can't really think of a situation where you wouldn't want to clear cache of a protected route to prevent backrouting, quite frankly it's something the developer shouldn't even have to think about with an auth library.
+
+</details>
 
 ## Setting Up
 
@@ -94,20 +195,6 @@ GitHub: [@MGSimard](https://github.com/MGSimard)
 Mail: [mgsimard.dev@gmail.com](mailto:mgsimard.dev@gmail.com)
 
 For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
-
-## Issues with Better Auth
-
-- No server-side Sign In/Sign Out methods. Can't use authClient in server to also match with revalidatePath() on logout, this makes things messy having to call it separately.
-- No callbackURL for Sign Out method.
-
-## Solutions to Better Auth
-
-- PREVENTING BACKROUTING TO MIDDLEWARE-PROTECTED ROUTES:
-  - Create a server action `export async function revalidateCache(route:string , mode?: "layout" | "page"){ revalidatePath(route, mode ?? undefined) }`
-  - For signIn button/method, import the server action and within signIn's onSuccess run `await revalidateCache("/sign-in")`
-  - For signOut button/method, import the server action and within signOut's onSuccess run `await revalidateCache("/dashboard", "layout")`
-  - This should force cache clearing of those routes which prevents backrouting after logging in/out
-  - You should still keep middleware auth protect (already set in this template) for direct access authchecks
 
 ## TASK LIST
 
