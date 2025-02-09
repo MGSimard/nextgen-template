@@ -1,11 +1,9 @@
-import { Header } from "@/components/Header";
-import { Section } from "@/components/Section";
 import { IconChevron } from "@/components/Icons";
 
 export default function PageHome() {
   return (
     <>
-      <Header className="hero noselect">
+      <header className="hero noselect">
         <h1>
           <span id="hero1">Next</span>
           <span id="hero2" className="clr-primary">
@@ -18,9 +16,9 @@ export default function PageHome() {
         <a href="#about" className="chevron-anchor" aria-label="Scroll down">
           <IconChevron />
         </a>
-      </Header>
+      </header>
       <main>
-        <Section id="about">
+        <section id="about">
           <h2>About</h2>
           <p>
             NextGen is a Next.js template by @MGSimard partly based on{" "}
@@ -32,8 +30,8 @@ export default function PageHome() {
             may not change in the future according to my own necessities. Updates will probably be done sparingly as I
             clone the repo prior to new projects, you can do the same.
           </p>
-        </Section>
-        <Section>
+        </section>
+        <section>
           <h2>Tech Stack</h2>
           <div className="table-wrapper">
             <table className="tech-table">
@@ -61,8 +59,8 @@ export default function PageHome() {
               </tbody>
             </table>
           </div>
-        </Section>
-        <Section>
+        </section>
+        <section>
           <h2>Additional Information</h2>
           <details>
             <summary>Multi-project schema pattern from T3 has been disabled.</summary>
@@ -82,8 +80,8 @@ export default function PageHome() {
               </li>
             </ol>
           </details>
-        </Section>
-        <Section>
+        </section>
+        <section>
           <h2>Setting Up</h2>
           <p>
             <a
@@ -93,8 +91,8 @@ export default function PageHome() {
               View &quot;Setting Up&quot; section on GitHub
             </a>
           </p>
-        </Section>
-        <Section>
+        </section>
+        <section>
           <h2>Contact</h2>
           <ul>
             <li>MGSimard</li>
@@ -124,7 +122,7 @@ export default function PageHome() {
             </a>
             .
           </p>
-        </Section>
+        </section>
       </main>
     </>
   );

@@ -1,9 +1,7 @@
-import { Section } from "@/components/Section";
-
 export default async function PageNested() {
   return (
     <main>
-      <Section>
+      <section>
         <h2>Nested</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in lacinia ligula, sit amet dictum urna. Nullam
@@ -13,7 +11,7 @@ export default async function PageNested() {
           imperdiet lectus. Vestibulum venenatis porttitor lectus, eget lacinia arcu sagittis eget. Duis fermentum
           luctus nunc nec rutrum. Phasellus nec efficitur leo.
         </p>
-      </Section>
+      </section>
     </main>
   );
 }

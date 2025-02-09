@@ -1,14 +1,11 @@
-import { Header } from "@/components/Header";
-import { Section } from "@/components/Section";
-
 export default function PageOtherPage() {
   return (
     <>
-      <Header>
+      <header>
         <h1>Other Page</h1>
-      </Header>
+      </header>
       <main>
-        <Section>
+        <section>
           <h2>Section</h2>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sit amet finibus metus. Vestibulum id orci
@@ -19,7 +16,7 @@ export default function PageOtherPage() {
             faucibus neque a semper vulputate. Aliquam a mauris odio. Praesent gravida nisl lectus, eget dapibus ex
             consectetur in. Nullam suscipit dapibus ante et laoreet. In tincidunt bibendum odio, vitae dapibus odio.
           </p>
-        </Section>
+        </section>
       </main>
     </>
   );

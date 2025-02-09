@@ -1,4 +1,3 @@
-import { Section } from "@/components/Section";
 import { SignInToast } from "@/components/SignInToast";
 
 type SearchParams = Promise<Record<string, string | string[] | undefined>>;
@@ -10,7 +9,7 @@ export default async function PageDashboard({ searchParams }: { searchParams: Se
   return (
     <main>
       {authSuccess === "true" && <SignInToast />}
-      <Section>
+      <section>
         <h2>Section</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in lacinia ligula, sit amet dictum urna. Nullam
@@ -20,7 +19,7 @@ export default async function PageDashboard({ searchParams }: { searchParams: Se
           imperdiet lectus. Vestibulum venenatis porttitor lectus, eget lacinia arcu sagittis eget. Duis fermentum
           luctus nunc nec rutrum. Phasellus nec efficitur leo.
         </p>
-      </Section>
+      </section>
     </main>
   );
 }
