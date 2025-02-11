@@ -55,7 +55,7 @@ General
 - Supabase (PostgreSQL)
 - PlanetScale (MySQL)
 
-High-throughput (Rate limiting, session management, caching, etc)
+High-Throughput (Rate limiting, Session Management, Caching, etc)
 
 - Upstash (Redis)
 
