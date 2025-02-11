@@ -61,27 +61,6 @@ export default function PageHome() {
           </div>
         </section>
         <section>
-          <h2>Additional Information</h2>
-          <details>
-            <summary>Multi-project schema pattern from T3 has been disabled.</summary>
-            <ol>
-              <li>
-                Now that Vercel has fully migrated the Vercel Postgres option to Neon, free tier users can have more
-                than one Postgres database.
-              </li>
-              <li>
-                Newer versions of Drizzle Kit have been bugged with multi-project schema setups for a while now. Though
-                it fails to,{" "}
-                <a
-                  className="link"
-                  href="https://github.com/drizzle-team/drizzle-orm/issues/3320#issuecomment-2461087002">
-                  migration actively attempts to drop your sequences.
-                </a>
-              </li>
-            </ol>
-          </details>
-        </section>
-        <section>
           <h2>Setting Up</h2>
           <p>
             <a
