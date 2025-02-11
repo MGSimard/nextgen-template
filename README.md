@@ -61,7 +61,7 @@ High-throughput (Rate limiting, session management, caching, etc)
 
 Edge & Local First
 
-- Turso (SQLite)
+- Turso (SQLite/libSQL)
 
 </details>
 
