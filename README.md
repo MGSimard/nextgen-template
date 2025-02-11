@@ -35,6 +35,36 @@ Its main purpose is for quickstarting my own personal projects with a bleeding e
 
 ## Additional Information
 
+<details><summary>Considerations.</summary>
+
+- Zustand
+- tRPC
+- Hono
+- Bun
+- TanStack Query (Client-side)
+- Superjson
+
+</details>
+
+<details><summary>Database choices.</summary>
+
+Neon should only be used for its free tier offering _(it's slower, and has horrible cold-start performance)_. Anything serious should be running on better, for-purpose DB solutions (separate your general storage, rate limiting, etc). If you're looking to get serious performance for live production applications I would recommend the following options instead:
+
+General
+
+- Supabase (PostgreSQL)
+- PlanetScale (MySQL)
+
+High-throughput (Rate limiting, session management, caching, etc)
+
+- Upstash (Redis)
+
+Edge & Local First
+
+- Turso (SQLite)
+
+</details>
+
 <details><summary>Multi-project schema pattern from T3 has been disabled.</summary>
 <ol>
 <li>Now that Vercel has fully migrated the Vercel Postgres option to Neon, free tier users can have more than one Postgres database.</li>
@@ -49,7 +79,7 @@ If you decide to use Email & Password you should know that your sign-up endpoint
 - While emailAndPassword is enabled in your auth config, the `/api/sign-up/email` endpoint becomes accessible by default.
 - This means even if you offer no way for users to sign up in say, a private application, they can still create an account by hitting up your hitting your sign-up endpoint with a POST request to http://example.com/api/auth/sign-up/email with email/password/name in the request body.
 
-In order to prevent this, should you choose to lock down registration, Better Auth does not currently have a betterAuth() flag to do this easily. Instead you have to intercept the API request with an auth middleware and reject their request. You can add the code below to your betterAuth config alongside database:{}, session: {}, etc:
+In order to prevent this, should you choose to lock down registration, Better Auth does not currently have a betterAuth() flag to do this easily. Instead you have to intercept the API request with an auth middleware and reject their request. You can add the code below to your betterAuth config alongside database: {}, session: {}, etc:
 
 ```
   hooks: {
