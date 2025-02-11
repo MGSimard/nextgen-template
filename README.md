@@ -77,7 +77,7 @@ Edge & Local First
 If you decide to use Email & Password you should know that your sign-up endpoint becomes publicly accessible by default, meaning anyone can create an account regardless of whether or not you give them an accessible, programmatic way to do so from within the application.
 
 - While emailAndPassword is enabled in your auth config, the `/api/sign-up/email` endpoint becomes accessible by default.
-- This means even if you offer no way for users to sign up in say, a private application, they can still create an account by hitting up your hitting your sign-up endpoint with a POST request to http://example.com/api/auth/sign-up/email with email/password/name in the request body.
+- This means even if you offer no way for users to sign up in say, a private application, they can still create an account by hitting up your sign-up endpoint with a POST request to http://example.com/api/auth/sign-up/email with email/password/name in the request body.
 
 In order to prevent this, should you choose to lock down registration, Better Auth does not currently have a betterAuth() flag to do this easily. Instead you have to intercept the API request with an auth middleware and reject their request. You can add the code below to your betterAuth config alongside database: {}, session: {}, etc:
 
