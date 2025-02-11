@@ -15,16 +15,16 @@ Its main purpose is for quickstarting my own personal projects with a bleeding e
 
 | Tech        | Version | Info                  | Documentation                                                                    |
 | ----------- | ------- | --------------------- | -------------------------------------------------------------------------------- |
-| Next.js     | 15.1.6  | FullStack Environment | [nextjs.org](https://nextjs.org/docs)                                            |
+| Next.js     | 15.1.7  | FullStack Environment | [nextjs.org](https://nextjs.org/docs)                                            |
 | React       | 19.0.0  | Compiler Enabled      | [react.dev](https://react.dev/)                                                  |
 | TypeScript  | 5.7.3   | Type Safety           | [typescriptlang.org](https://www.typescriptlang.org/docs/)                       |
 | Neon        | 0.10.4  | Database              | [neon.tech](https://neon.tech/docs/introduction)                                 |
 | PostgreSQL  | 3.4.5   | Database Management   | [postgresql.org](https://www.postgresql.org/docs/)                               |
-| Drizzle     | 0.39.2  | ORM                   | [orm.drizzle.team](https://orm.drizzle.team/docs/overview)                       |
+| Drizzle     | 0.39.3  | ORM                   | [orm.drizzle.team](https://orm.drizzle.team/docs/overview)                       |
 | Drizzle Kit | 0.30.4  | Database Migration    | [orm.drizzle.team](https://orm.drizzle.team/docs/kit-overview)                   |
 | Better Auth | 1.1.16  | Authentication        | [better-auth.com](https://www.better-auth.com/docs/introduction)                 |
 | Zod         | 3.24.1  | Validation            | [zod.dev](https://zod.dev/)                                                      |
-| ESLint      | 9.19.0  | Flat Config           | [eslint.org](https://eslint.org/docs/latest/)                                    |
+| ESLint      | 9.20.0  | Flat Config           | [eslint.org](https://eslint.org/docs/latest/)                                    |
 | t3-oss/env  | 0.12.0  | .env Type Safety      | [create.t3.gg](https://create.t3.gg/en/usage/env-variables)                      |
 | pnpm        | 9.15.4  | Package Manager       | [pnpm.io](https://pnpm.io/motivation)                                            |
 | Vercel      | -       | Hosting               | [vercel.com](https://vercel.com/docs)                                            |
