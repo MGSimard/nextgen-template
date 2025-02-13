@@ -74,6 +74,8 @@ Edge & Local First
 
 <details><summary>Better Auth issue: Disabling user registration.</summary>
 
+_Note: There is currently a [PR open](https://github.com/better-auth/better-auth/pull/1428) to introduce a signupsDisabled flag. You would still be able to create users as an admin using authClient.admin -- and role granularity for admin actions could be achieved with [this additional PR](https://github.com/better-auth/better-auth/pull/1424)._
+
 If you decide to use Email & Password you should know that your sign-up endpoint becomes publicly accessible by default, meaning anyone can create an account regardless of whether or not you give them an accessible, programmatic way to do so from within the application.
 
 - While emailAndPassword is enabled in your auth config, the `/api/sign-up/email` endpoint becomes accessible by default.
@@ -91,10 +93,9 @@ In order to prevent this, should you choose to lock down registration, Better Au
   },
 ```
 
-For Better Auth devs:
+Extra:
 
-- Add a `signUpsEnabled` flag that defaults to `TRUE`, make options `TRUE`, `FALSE` and array of role strings _(so admins can still create accounts on behalf of users)._
-- Currently, while emailAndPassword are disabled, the sign-up/email API endpoint does respond with an error and prevent sign ups, however why include the endpoint at all if the feature is completely disabled? Not necessarily a big deal, but if everyone stops caring about a little bloat here and there, it builds up to a lot of bloat.
+- Currently, when emailAndPassword aren't enabled, the /sign-up/email endpoint is still created. Though it does respond with an error stating that registration is disabled, I don't feel like it makes sense to include the endpoint to begin with if the feature itself is disabled entirely. A little bloat here and there stacks up to a lot of bloat down the line.
 
 </details>
 
