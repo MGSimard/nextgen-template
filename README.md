@@ -210,7 +210,7 @@ You could argue this is more of a nitpick, but the entire cache clearing setup c
 
 **6.** Test Database connection: `pnpm db:studio` -> Navigate to https://local.drizzle.studio.
 
-**7.** Generate new schema: `npx @better-auth/cli generate --config /src/server/auth`
+**7.** Generate new schema: `npx @better-auth/cli generate --config /src/server/auth`.
 
 **8.** Copy newly generated auth-schema.ts contents, overwrite server/db/schema.ts contents with it, delete auth-schema.ts.
 
