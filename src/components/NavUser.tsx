@@ -42,9 +42,9 @@ export function NavUser({ hideNav }: { hideNav: () => void }) {
                 onClick={async () =>
                   await authClient.signOut({
                     fetchOptions: {
-                      onSuccess: () => {
+                      onSuccess: async () => {
                         toast.success("Signed out successfully.");
-                        revalidateCache("/dashboard", "layout");
+                        await revalidateCache("/dashboard", "layout");
                         router.push("/");
                       },
                     },

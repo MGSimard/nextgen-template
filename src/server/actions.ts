@@ -16,6 +16,6 @@ import { revalidatePath } from "next/cache";
  * if (!session) do stuff;
  */
 
-export function revalidateCache(route: string, mode?: "layout" | "page") {
+export async function revalidateCache(route: string, mode?: "layout" | "page") {
   revalidatePath(route, mode);
 }
