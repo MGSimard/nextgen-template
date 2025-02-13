@@ -22,9 +22,9 @@ Its main purpose is for quickstarting my own personal projects with a bleeding e
 | PostgreSQL  | 3.4.5   | Database Management   | [postgresql.org](https://www.postgresql.org/docs/)                               |
 | Drizzle     | 0.39.3  | ORM                   | [orm.drizzle.team](https://orm.drizzle.team/docs/overview)                       |
 | Drizzle Kit | 0.30.4  | Database Migration    | [orm.drizzle.team](https://orm.drizzle.team/docs/kit-overview)                   |
-| Better Auth | 1.1.16  | Authentication        | [better-auth.com](https://www.better-auth.com/docs/introduction)                 |
-| Zod         | 3.24.1  | Validation            | [zod.dev](https://zod.dev/)                                                      |
-| ESLint      | 9.20.0  | Flat Config           | [eslint.org](https://eslint.org/docs/latest/)                                    |
+| Better Auth | 1.1.17  | Authentication        | [better-auth.com](https://www.better-auth.com/docs/introduction)                 |
+| Zod         | 3.24.2  | Validation            | [zod.dev](https://zod.dev/)                                                      |
+| ESLint      | 9.20.1  | Flat Config           | [eslint.org](https://eslint.org/docs/latest/)                                    |
 | t3-oss/env  | 0.12.0  | .env Type Safety      | [create.t3.gg](https://create.t3.gg/en/usage/env-variables)                      |
 | pnpm        | 9.15.4  | Package Manager       | [pnpm.io](https://pnpm.io/motivation)                                            |
 | Vercel      | -       | Hosting               | [vercel.com](https://vercel.com/docs)                                            |

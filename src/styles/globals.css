@@ -411,6 +411,26 @@ img.ac-avatar {
   position: relative;
   animation: fadeblur 2s ease-out forwards;
 }
+/* [data-theme="light"] .hero h1::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  transform-origin: bottom;
+  transform: skewX(30deg) scaleY(0.3) translateY(-0.68em) translateX(0.17em);
+  color: var(--clrDetail);
+  filter: blur(0.7rem);
+  z-index: -1;
+}
+[data-theme="light"] #hero3::after {
+  content: ".";
+  position: absolute;
+  inset: 0;
+  transform-origin: bottom;
+  transform: skewX(30deg) scaleY(0.3) translateY(-0.68em) translateX(0.17em);
+  color: var(--clrDetail);
+  filter: blur(0.7rem);
+  z-index: -1;
+} */
 #hero1,
 #hero2,
 #hero3 {
