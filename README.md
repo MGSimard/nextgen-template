@@ -210,11 +210,15 @@ You could argue this is more of a nitpick, but the entire cache clearing setup c
 
 **6.** Test Database connection: `pnpm db:studio` -> Navigate to https://local.drizzle.studio.
 
-**7.** Apply schema to database: `pnpm db:push` -> Refresh https://local.drizzle.studio to view changes.
+**7.** Generate new schema: `npx @better-auth/cli generate --config /src/server/auth`
 
-**8.** Commit & Redeploy the application to refresh newly added environment variables.
+**8.** Copy newly generated auth-schema.ts contents, overwrite server/db/schema.ts contents with it, delete auth-schema.ts.
 
-**9.** If you wish add more authentication options or plugins view the "Authentication" and "Plugins" sections respectively: https://www.better-auth.com/docs.
+**8.** Apply schema to database: `pnpm db:push` -> Refresh https://local.drizzle.studio to view changes.
+
+**9.** Commit & Redeploy the application to refresh newly added environment variables.
+
+**10.** If you wish add more authentication options or plugins view the "Authentication" and "Plugins" sections respectively: https://www.better-auth.com/docs.
 
 ---
 
@@ -229,6 +233,7 @@ For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
 
 ## TASK LIST
 
+- [ ] Deal with signout redirection not working if signing out when on a 404-type page
 - [ ] User settings page
 - [ ] Account/User deletion
 - [ ] Figure out visual loading state to middleware protected routes (might devolve into layout/route auth instead of middleware tbh)
