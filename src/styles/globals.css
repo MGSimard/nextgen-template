@@ -223,30 +223,6 @@ details ol {
 }
 /**/
 /* NAV */
-nav {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 4rem;
-  width: var(--navWidth);
-  padding: var(--navPadding);
-  background-color: var(--clrBgLight);
-  overflow: hidden auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--clrScroll) var(--clrBgLight);
-  z-index: 9999;
-  transition: all 0.2s ease;
-}
-#nav-top {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 4rem;
-}
 #nav-trigger {
   position: fixed;
   top: 2rem;
@@ -269,28 +245,24 @@ body:has(#nav:popover-open) #nav-trigger {
   width: 4rem;
   height: 4rem;
 }
-#nav-close {
-  display: flex;
-  padding: 0;
-  font-size: 2rem;
-  color: var(--clrText);
-  background: none;
-  opacity: 0.6;
-  transition: opacity ease 0.2s;
-  z-index: 1;
-}
-#nav-close:hover,
-#nav-close:focus-visible {
-  opacity: 1;
-}
-#nav-close svg {
-  display: block;
-  width: 4rem;
-  height: 4rem;
-}
-#nav-trigger,
-#nav-close {
+#nav-trigger {
   display: none;
+}
+nav {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 4rem;
+  width: var(--navWidth);
+  padding: var(--navPadding);
+  background-color: var(--clrBgLight);
+  z-index: 9999;
+  transition: all 0.2s ease;
+  overflow: hidden;
 }
 .nav-preview {
   display: flex;
@@ -320,7 +292,8 @@ body:has(#nav:popover-open) #nav-trigger {
   overflow: hidden;
   transition: all 0.2s ease;
 }
-#nav-logo {
+#nav-header {
+  flex-shrink: 0;
   font-family: var(--GeistMono);
   font-weight: 500;
 }
@@ -328,10 +301,14 @@ body:has(#nav:popover-open) #nav-trigger {
   color: var(--clrPrimary);
 }
 #nav-links {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   font-family: var(--GeistMono);
+  overflow: hidden auto;
+  scrollbar-width: none;
+  scrollbar-color: var(--clrScroll) var(--clrBgLight);
 }
 #nav-links a:not(.active-link):hover,
 #nav-links a:not(.active-link):focus-visible {
@@ -344,6 +321,9 @@ body:has(#nav:popover-open) #nav-trigger {
 }
 #nav-links svg {
   padding: 1rem;
+}
+#nav-footer {
+  flex-shrink: 0;
 }
 .ac-avatar {
   flex-shrink: 0;
@@ -530,6 +510,10 @@ img.ac-avatar {
   nav:has(:focus-visible) {
     width: min(25rem, 100%);
   }
+  nav:hover #nav-links,
+  nav:has(:focus-visible) #nav-links {
+    scrollbar-width: thin;
+  }
   nav:hover .nav-reveal,
   nav:has(:focus-visible) .nav-reveal {
     opacity: 1;
@@ -547,6 +531,9 @@ img.ac-avatar {
     width: min(25rem, 100%);
     transform: translateX(0);
   }
+  #nav-links {
+    scrollbar-width: thin;
+  }
   nav:popover-open .nav-reveal {
     opacity: 1;
   }
@@ -557,9 +544,6 @@ img.ac-avatar {
   nav::backdrop {
     background-color: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(0.5rem);
-  }
-  nav:popover-open #nav-close {
-    display: block;
   }
 }
 /**/

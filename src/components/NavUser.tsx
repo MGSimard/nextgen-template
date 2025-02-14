@@ -13,7 +13,7 @@ export function NavUser({ hideNav }: { hideNav: () => void }) {
   const { data: session, isPending } = authClient.useSession();
 
   return (
-    <div id="auth-control" className="nav-preview">
+    <div id="nav-footer" className="nav-preview">
       {session?.user.image ? (
         <img className={`ac-avatar${isPending ? " ac-pending" : ""}`} src={session.user.image} alt="" />
       ) : (

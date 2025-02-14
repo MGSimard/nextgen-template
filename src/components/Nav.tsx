@@ -30,35 +30,33 @@ export function Nav() {
 
   return (
     <nav ref={navRef} id="nav" popover="auto" className="noselect">
-      <div id="nav-top">
-        <Link id="nav-logo" className="nav-preview" href="/">
-          <IconNextGen />
-          <span className="nav-reveal">NextGen</span>
-        </Link>
-        <ul id="nav-links">
-          {links.map((link) => (
-            <li key={link.text}>
-              <Link
-                href={link.href}
-                onClick={hideNav}
-                className={`nav-preview${isActive(link.href) ? " active-link" : ""}`}>
-                {link.icon}
-                <span className="nav-reveal">{link.text}</span>
-              </Link>
-            </li>
-          ))}
-          <li>
-            <a
-              href="https://github.com/MGSimard/nextgen-template"
-              target="_blank"
+      <Link id="nav-header" className="nav-preview" href="/">
+        <IconNextGen />
+        <span className="nav-reveal">NextGen</span>
+      </Link>
+      <ul id="nav-links">
+        {links.map((link) => (
+          <li key={link.text}>
+            <Link
+              href={link.href}
               onClick={hideNav}
-              className="nav-preview">
-              <IconGitHub />
-              <span className="nav-reveal">GitHub</span>
-            </a>
+              className={`nav-preview${isActive(link.href) ? " active-link" : ""}`}>
+              {link.icon}
+              <span className="nav-reveal">{link.text}</span>
+            </Link>
           </li>
-        </ul>
-      </div>
+        ))}
+        <li>
+          <a
+            href="https://github.com/MGSimard/nextgen-template"
+            target="_blank"
+            onClick={hideNav}
+            className="nav-preview">
+            <IconGitHub />
+            <span className="nav-reveal">GitHub</span>
+          </a>
+        </li>
+      </ul>
       <NavUser hideNav={hideNav} />
     </nav>
   );
