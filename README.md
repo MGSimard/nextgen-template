@@ -233,6 +233,8 @@ For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
 
 ## TASK LIST
 
+- [ ] Rework the navbar, tie its size to elements instead of the other way around, which would also fix styles getting kicked by the navbar's scrollbar on overflow.
+- [ ] In the navbar rework also separate the logo into a nav-header component, the user into nav-footer then links into nav-links -- make the nav-header sticky to top and nav-footer sticky to bottom, remove the navbar scrollbar and instead slap it into the links exclusively - flex-grow links container?
 - [ ] Deal with signout redirection not working if signing out when on a 404-type page
 - [ ] User settings page
 - [ ] Account/User deletion
