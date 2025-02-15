@@ -227,6 +227,7 @@ details ol {
   position: fixed;
   top: 2rem;
   right: var(--sitePadding);
+  display: none;
   color: var(--clrText);
   background: none;
   backdrop-filter: blur(1rem);
@@ -244,9 +245,6 @@ body:has(#nav:popover-open) #nav-trigger {
   display: block;
   width: 4rem;
   height: 4rem;
-}
-#nav-trigger {
-  display: none;
 }
 nav {
   position: fixed;
