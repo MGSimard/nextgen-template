@@ -115,7 +115,7 @@ const techStack = [
   ["PostgreSQL", "3.4.5", "Database Management", "https://www.postgresql.org/docs", "postgresql.org"],
   ["Drizzle", "0.39.3", "ORM", "https://orm.drizzle.team/docs/overview", "orm.drizzle.team"],
   ["Drizzle Kit", "0.30.4", "Database Migration", "https://orm.drizzle.team/docs/kit-overview", "orm.drizzle.team"],
-  ["Better Auth", "1.1.17", "Authentication", "https://www.better-auth.com/docs/introduction", "better-auth.com"],
+  ["Better Auth", "1.1.18", "Authentication", "https://www.better-auth.com/docs/introduction", "better-auth.com"],
   ["Zod", "3.24.2", "Validation", "https://zod.dev", "zod.dev"],
   ["ESLint", "9.20.1", "Flat Config", "https://eslint.org/docs/latest", "eslint.org"],
   ["t3-oss/env", "0.12.0", ".env Type Safety", "https://create.t3.gg/en/usage/env-variables", "create.t3.gg"],
