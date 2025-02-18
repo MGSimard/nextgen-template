@@ -2,7 +2,26 @@
   "name": "nextgen-template",
   "version": "0.1.0",
   "private": true,
+  "author": "MGSimard <mgsimard.dev@gmail.com> (https://mgsimard.dev)",
+  "description": "Quickstart Bleeding Edge Next.js Stack by @MGSimard.",
+  "license": "MIT",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MGSimard/nextgen-template.git"
+  },
+  "keywords": [
+    "nextgen-template",
+    "nextgen",
+    "next.js",
+    "typescript",
+    "better-auth",
+    "drizzle"
+  ],
+  "bugs": {
+    "url": "https://github.com/MGSimard/nextgen-template/issues"
+  },
+  "homepage": "https://github.com/MGSimard/nextgen-template#readme",
   "scripts": {
     "build": "next build",
     "check": "next lint && tsc --noEmit",
