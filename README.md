@@ -37,6 +37,7 @@ Its main purpose is for quickstarting my own personal projects with a bleeding e
 
 <details><summary>Considerations.</summary>
 
+- Build a CLI tool + npm package
 - Zustand
 - tRPC
 - Hono
