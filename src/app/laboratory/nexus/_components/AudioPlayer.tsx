@@ -2,7 +2,9 @@
 import { useState, useRef } from "react";
 
 export function AudioPlayer() {
-  const [trackName, setTrackName] = useState("Cyberpunk 2077 - The Rebel Path");
+  const [trackName, setTrackName] = useState(
+    "Cyberpunk 2077 - The Rebel PathCyberpunk 2077 - The Rebel PathCyberpunk 2077 - The Rebel PathCyberpunk 2077 - The Rebel Path"
+  );
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLooping, setIsLooping] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -48,7 +50,10 @@ export function AudioPlayer() {
   return (
     <div id="proto-nexus-music">
       <audio ref={audioRef} id="proto-nexus-music-player" />
-      <img alt="LOGO" />
+      <img
+        alt="LOGO"
+        src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
+      />
       <div id="proto-nexus-music-meta">
         <span id="proto-nexus-music-title">{trackName}</span>
         <div id="proto-nexus-music-controls">
