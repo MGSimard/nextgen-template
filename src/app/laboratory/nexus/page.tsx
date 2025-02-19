@@ -35,35 +35,39 @@ export default function PageNexus() {
         <section id="proto-nexus">
           <div id="proto-nexus-left">
             <div id="proto-nexus-time">
-              <div id="proto-nexus-time-clock">
+              <div id="pnt-clock">
                 <IconClock />
               </div>
-              <div id="proto-nexus-time-numbers">
+              <div id="pnt-numbers">
                 06:30<span>PM</span>
               </div>
             </div>
+
             <div id="proto-nexus-buttons">
               {buttons.map((button) => (
                 <button type="button" key={button.label}>
+                  {/* NEED NEW SHARPER BUTTON ICONS */}
                   {button.icon}
                 </button>
               ))}
             </div>
+
             <ul id="proto-nexus-weather">
               {weather.map((item) => (
-                <li key={item.quarter} className="proto-nexus-weather-item">
-                  <span className="proto-nexus-weather-label">{item.quarter}</span>
-                  <div>
+                <li key={item.quarter} className="pnw-item">
+                  <span className="pnw-label">{item.quarter}</span>
+                  <div className="pnw-temp">
                     {item.icon}
                     <span>{item.temp}°</span>
                   </div>
-                  <div>
+                  <div className="pnw-rain">
                     <IconRain aria-label="Chance of rain" />
                     <span>{item.rain}%</span>
                   </div>
                 </li>
               ))}
             </ul>
+
             <AudioPlayer />
           </div>
           <div id="proto-nexus-right">
