@@ -9,6 +9,7 @@ import {
   IconCalendar,
   IconBattery,
 } from "../_components/Icons";
+import { AudioPlayer } from "./_components/AudioPlayer";
 
 export default function PageNexus() {
   const buttons = [
@@ -63,10 +64,7 @@ export default function PageNexus() {
                 </li>
               ))}
             </ul>
-            <div id="proto-nexus-music">
-              <img alt="LOGO" />
-              <div>Johnny Silverhand - Pull Me Under</div>
-            </div>
+            <AudioPlayer />
           </div>
           <div id="proto-nexus-right">
             <div id="proto-nexus-thing1"></div>
