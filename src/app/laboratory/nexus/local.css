@@ -59,6 +59,9 @@
 /* WEATHER */
 #proto-nexus-weather {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
   gap: 2rem;
 }
 .pnw-item {
@@ -122,15 +125,15 @@
   white-space: nowrap;
   overflow: hidden;
 }
-#pnm-time {
-  font-family: var(--GeistMono);
-}
 #pnm-controls {
   flex-grow: 1;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+#pnm-time {
+  font-family: var(--GeistMono);
 }
 #pnm-controls input {
   flex-grow: 1;

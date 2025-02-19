@@ -4,7 +4,7 @@ import { IconForward, IconBackward, IconPlay } from "../../_components/Icons";
 import { IconPause } from "../../_components/Icons";
 
 export function AudioPlayer() {
-  const [trackName, setTrackName] = useState(trackSrcs[12]?.trackName ?? "");
+  const [trackName, setTrackName] = useState(trackSrcs[0]?.trackName ?? "");
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLooping, setIsLooping] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
