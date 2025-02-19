@@ -29,7 +29,7 @@ export default function PageNexus() {
   return (
     <>
       <header>
-        <h1>Nexus</h1>
+        <h1>Nexus // WIP</h1>
       </header>
       <main>
         <section id="proto-nexus">
