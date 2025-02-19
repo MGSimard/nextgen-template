@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 4rem;
 }
 
 #proto-nexus-time-clock {
@@ -43,6 +43,16 @@
 #proto-nexus-buttons > button {
   width: 10rem;
   height: 10rem;
+  padding: 3rem;
+  background: var(--clrBgLight);
+}
+#proto-nexus-buttons > button:hover,
+#proto-nexus-buttons > button:focus-visible {
+  background: var(--clrHover);
+}
+#proto-nexus-buttons > button:active {
+  color: var(--clrBg);
+  background: var(--clrText);
 }
 
 #proto-nexus-weather {
