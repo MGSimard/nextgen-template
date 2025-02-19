@@ -3,7 +3,15 @@ import { useRef } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { NavUser } from "@/components/NavUser";
-import { IconComputer, IconGitHub, IconHome, IconNewspaper, IconNextGen, IconWarning } from "@/components/Icons";
+import {
+  IconBeaker,
+  IconComputer,
+  IconGitHub,
+  IconHome,
+  IconNewspaper,
+  IconNextGen,
+  IconWarning,
+} from "@/components/Icons";
 
 export function Nav() {
   const pathname = usePathname();
@@ -11,6 +19,7 @@ export function Nav() {
   const links = [
     { text: "Home", href: "/", icon: <IconHome /> },
     { text: "Dashboard", href: "/dashboard", icon: <IconComputer /> },
+    { text: "Laboratory", href: "/laboratory", icon: <IconBeaker /> },
     { text: "Other Page", href: "/other-page", icon: <IconNewspaper /> },
     { text: "Not Found", href: "/does-not-exist", icon: <IconWarning /> },
   ];

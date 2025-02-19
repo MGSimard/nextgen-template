@@ -29,7 +29,7 @@ Its main purpose is for quickstarting my own personal projects with a bleeding e
 | pnpm        | 9.15.4  | Package Manager       | [pnpm.io](https://pnpm.io/motivation)                                            |
 | Vercel      | -       | Hosting               | [vercel.com](https://vercel.com/docs)                                            |
 | next-themes | 0.4.4   | Theme Toggling        | [github.com/pacocoursey/next-themes](https://github.com/pacocoursey/next-themes) |
-| Sonner      | 1.7.4   | UI Notifications      | [sonner.emilkowal.ski](https://sonner.emilkowal.ski/getting-started)             |
+| Sonner      | 2.0.0   | UI Notifications      | [sonner.emilkowal.ski](https://sonner.emilkowal.ski/getting-started)             |
 
 </td></tr> </table>
 

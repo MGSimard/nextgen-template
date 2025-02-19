@@ -128,5 +128,5 @@ const techStack = [
     "https://github.com/pacocoursey/next-themes",
     "github.com/pacocoursey/next-themes",
   ],
-  ["Sonner", "1.7.4", "UI Notifications", "https://sonner.emilkowal.ski/getting-started", "sonner.emilkowal.ski"],
+  ["Sonner", "2.0.0", "UI Notifications", "https://sonner.emilkowal.ski/getting-started", "sonner.emilkowal.ski"],
 ];
