@@ -108,6 +108,9 @@ img {
   color: inherit;
   white-space: nowrap;
 }
+svg {
+  display: block;
+}
 a {
   color: inherit;
   text-decoration: none;
