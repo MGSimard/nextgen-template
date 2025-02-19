@@ -14,7 +14,9 @@ export function AudioPlayer() {
   const seekerRef = useRef<HTMLInputElement>(null);
 
   const handlePlayPause = () => {
-    console.log("Play/Pause");
+    console.log("Was playing?:", isPlaying);
+    setIsPlaying((prevState) => !prevState);
+    console.log("Now playing?:", isPlaying);
   };
   const handleEnd = () => {
     console.log("End");
@@ -72,7 +74,7 @@ export function AudioPlayer() {
             <input ref={volumeRef} type="range" defaultValue={100} onChange={handleVolume} />
           </div>
         </div>
-        <input id="pnm-seeker" ref={seekerRef} type="range" defaultValue={currentTime} onChange={handleSeek} />
+        <input id="pnm-seeker" ref={seekerRef} type="range" defaultValue={0} onChange={handleSeek} />
       </div>
     </div>
   );
