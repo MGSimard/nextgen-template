@@ -6,6 +6,7 @@ import { IconPause } from "../../_components/Icons";
 // This whole shit dies on refresh, as in can no longer interact with it at least visually
 // Audio will still play, you'll still get console logs, but the UI dies
 // TODO: Fix, it's 2AM
+// Also TODO: Sync setIsPlaying with audioPlayer
 
 export function AudioPlayer() {
   const [currentTrack, setCurrentTrack] = useState(0);
