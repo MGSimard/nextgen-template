@@ -31,7 +31,7 @@ export function AudioPlayer() {
       audioPlayer.removeEventListener("loadedmetadata", updateDuration);
       audioPlayer.removeEventListener("timeupdate", updateCurrentTime);
     };
-  }, []);
+  }, [audioPlayerRef]);
 
   const handlePlayPause = () => {
     const audioPlayer = audioPlayerRef.current;
