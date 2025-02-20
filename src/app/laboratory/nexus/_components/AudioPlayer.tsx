@@ -12,6 +12,7 @@ import { IconPause } from "../../_components/Icons";
  * - Add album image for Cyberpunk 2077 soundtrack
  * - Add track title scrolling
  * - Fit site header to navtrigger button height (match my vPulse changes)
+ * - Find sharper control icons or make them myself
  */
 
 export function AudioPlayer() {
@@ -19,7 +20,6 @@ export function AudioPlayer() {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -41,7 +41,10 @@ export function AudioPlayer() {
       console.log("Auto next track");
       setCurrentTrack((prev) => (prev + 1) % trackSrcs.length);
       audioPlayer.load();
-      audioPlayer.play().catch((err) => console.error(err));
+      audioPlayer
+        .play()
+        .catch((err) => console.error(err))
+        .finally(() => setIsPlaying(true));
     };
 
     audioPlayer.addEventListener("loadedmetadata", updateDuration);
@@ -65,9 +68,13 @@ export function AudioPlayer() {
       if (audioPlayer.error) {
         audioPlayer.load();
       }
-      audioPlayer.play().catch((err) => console.error(err));
+      audioPlayer
+        .play()
+        .catch((err) => console.error(err))
+        .finally(() => setIsPlaying(true));
     } else {
       audioPlayer.pause();
+      setIsPlaying(false);
     }
   };
 
@@ -78,8 +85,12 @@ export function AudioPlayer() {
 
     setCurrentTrack((prev) => (prev + 1) % trackSrcs.length);
     audioPlayer.load();
-    audioPlayer.play().catch((err) => console.error(err));
+    audioPlayer
+      .play()
+      .catch((err) => console.error(err))
+      .finally(() => setIsPlaying(true));
   };
+
   const handlePrevious = () => {
     console.log("Previous");
     const audioPlayer = audioPlayerRef.current;
@@ -87,7 +98,10 @@ export function AudioPlayer() {
 
     setCurrentTrack((prev) => (prev - 1 + trackSrcs.length) % trackSrcs.length);
     audioPlayer.load();
-    audioPlayer.play().catch((err) => console.error(err));
+    audioPlayer
+      .play()
+      .catch((err) => console.error(err))
+      .finally(() => setIsPlaying(true));
   };
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
