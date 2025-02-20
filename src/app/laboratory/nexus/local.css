@@ -131,7 +131,6 @@
   overflow: hidden;
 }
 #pnm-controls {
-  flex-grow: 1;
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -141,9 +140,7 @@
   font-family: var(--GeistMono);
 }
 #pnm-controls input {
-  flex-grow: 1;
-  min-width: 6rem;
-  width: 0;
+  width: 12rem;
 }
 #pnm-controls > button {
   background: none;

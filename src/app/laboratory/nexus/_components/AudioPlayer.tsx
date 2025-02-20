@@ -12,24 +12,34 @@ export function AudioPlayer() {
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
+    console.log("Audio player mounted");
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer) return;
 
     audioPlayer.volume = 0.5;
 
     const updateDuration = () => {
+      console.log("Metadata loaded");
       setDuration(audioPlayer.duration);
     };
     const updateCurrentTime = () => {
+      console.log("Time updated");
       setCurrentTime(audioPlayer.currentTime);
+    };
+    const autoNextTrack = () => {
+      console.log("Auto next track");
+      setCurrentTrack((prev) => (prev + 1) % trackSrcs.length);
     };
 
     audioPlayer.addEventListener("loadedmetadata", updateDuration);
     audioPlayer.addEventListener("timeupdate", updateCurrentTime);
+    audioPlayer.addEventListener("ended", autoNextTrack);
 
     return () => {
+      console.log("Audio player unmounted");
       audioPlayer.removeEventListener("loadedmetadata", updateDuration);
       audioPlayer.removeEventListener("timeupdate", updateCurrentTime);
+      audioPlayer.removeEventListener("ended", autoNextTrack);
     };
   }, [audioPlayerRef]);
 

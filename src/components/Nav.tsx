@@ -21,7 +21,6 @@ export function Nav() {
     { text: "Dashboard", href: "/dashboard", icon: <IconComputer /> },
     { text: "Laboratory", href: "/laboratory", icon: <IconBeaker /> },
     { text: "Other Page", href: "/other-page", icon: <IconNewspaper /> },
-    { text: "Not Found", href: "/does-not-exist", icon: <IconWarning /> },
   ];
   const isActive = (href: string) => {
     return pathname === href || (pathname.startsWith(href) && href !== "/");
@@ -55,6 +54,12 @@ export function Nav() {
             </Link>
           </li>
         ))}
+        <li>
+          <a href="https://nextgen-template.vercel.app/not-found" className="nav-preview">
+            <IconWarning />
+            <span className="nav-reveal">Not Found</span>
+          </a>
+        </li>
         <li>
           <a
             href="https://github.com/MGSimard/nextgen-template"

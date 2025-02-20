@@ -16,11 +16,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://nextgen-template.vercel.app/does-not-exist</loc>
-    <lastmod>2024-01-28</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://nextgen-template.vercel.app/sign-in</loc>
     <lastmod>2024-01-28</lastmod>
     <priority>0.6</priority>
