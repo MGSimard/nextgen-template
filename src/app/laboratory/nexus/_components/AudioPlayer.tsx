@@ -5,7 +5,6 @@ import { IconPause } from "../../_components/Icons";
 
 /** TASK LIST
  * - Fix UI dying on refresh (only seems to happen on desktop), audio still plays, console logs still print.
- * - Sync setIsPlaying with audioPlayer
  * - Logarithmic volume control
  * - Swap to a vertical popover volume control
  * - Override input[type="range"] appearance across all browsers (or make my own element)
