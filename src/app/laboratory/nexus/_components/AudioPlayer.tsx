@@ -90,7 +90,7 @@ export function AudioPlayer() {
 
   return (
     <div id="proto-nexus-music">
-      <audio ref={audioPlayerRef} id="pnm-player" controls={true} preload="metadata">
+      <audio ref={audioPlayerRef} id="pnm-player" preload="metadata">
         {trackSrcs[currentTrack] ? <source src={trackSrcs[currentTrack]?.url} type="audio/mp3" /> : null}
       </audio>
       <img

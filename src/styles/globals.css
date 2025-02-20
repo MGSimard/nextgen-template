@@ -67,9 +67,8 @@ footer {
 }
 header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: var(--headerHeight);
+  min-height: var(--headerHeight);
 }
 main {
   flex-grow: 1;
@@ -227,6 +226,16 @@ details[open] summary {
 details ul,
 details ol {
   padding-left: 1rem;
+}
+#proto-h1 {
+  position: relative;
+}
+#proto-h1 span {
+  position: absolute;
+  left: 0;
+  bottom: -1rem;
+  font-size: 1.2rem;
+  color: var(--clrDetail);
 }
 /**/
 /* NAV */

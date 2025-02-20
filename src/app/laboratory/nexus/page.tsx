@@ -29,7 +29,15 @@ export default function PageNexus() {
   return (
     <>
       <header>
-        <h1>Nexus // WIP</h1>
+        <h1 id="proto-h1">
+          Nexus // WIP
+          <span>
+            Based on:{" "}
+            <a className="link" href="https://www.behance.net/gallery/118663901/Cyberpunk-2077User-Interface-(Part-1)">
+              Cyberpunk 2077
+            </a>{" "}
+          </span>
+        </h1>
       </header>
       <main>
         <section id="proto-nexus">

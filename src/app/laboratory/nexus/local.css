@@ -1,6 +1,6 @@
-#proto-nexus {
+/* #proto-nexus {
   border: 1px solid red;
-}
+} */
 /* #proto-nexus * {
   border: 1px solid rgba(0, 225, 255, 0.42);
 } */
@@ -105,9 +105,9 @@
   object-fit: cover;
   border: 1px solid var(--clrBorder);
 }
-/* #pnm-player {
-  display: none !important; 
-} */
+#pnm-player {
+  display: none !important;
+}
 #pnm-meta {
   flex-grow: 1;
   display: flex;
