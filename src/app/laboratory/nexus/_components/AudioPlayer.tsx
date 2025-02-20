@@ -30,11 +30,7 @@ export function AudioPlayer() {
       console.log("Auto next track");
       setCurrentTrack((prev) => (prev + 1) % trackSrcs.length);
       audioPlayer.load();
-
-      const playPromise = audioPlayer.play();
-      if (playPromise) {
-        playPromise.then(null).catch((err) => console.log(err));
-      }
+      audioPlayer.play().catch((err) => console.error(err));
     };
 
     audioPlayer.addEventListener("loadedmetadata", updateDuration);
@@ -58,10 +54,7 @@ export function AudioPlayer() {
       if (audioPlayer.error) {
         audioPlayer.load();
       }
-      const playPromise = audioPlayer.play();
-      if (playPromise) {
-        playPromise.then(null).catch((err) => console.log(err));
-      }
+      audioPlayer.play().catch((err) => console.error(err));
     } else {
       audioPlayer.pause();
     }
@@ -74,11 +67,7 @@ export function AudioPlayer() {
 
     setCurrentTrack((prev) => (prev + 1) % trackSrcs.length);
     audioPlayer.load();
-
-    const playPromise = audioPlayer.play();
-    if (playPromise) {
-      playPromise.then(null).catch((err) => console.log(err));
-    }
+    audioPlayer.play().catch((err) => console.error(err));
   };
   const handlePrevious = () => {
     console.log("Previous");
@@ -87,11 +76,7 @@ export function AudioPlayer() {
 
     setCurrentTrack((prev) => (prev - 1 + trackSrcs.length) % trackSrcs.length);
     audioPlayer.load();
-
-    const playPromise = audioPlayer.play();
-    if (playPromise) {
-      playPromise.then(null).catch((err) => console.log(err));
-    }
+    audioPlayer.play().catch((err) => console.error(err));
   };
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
