@@ -7,6 +7,7 @@ import { IconPause } from "../../_components/Icons";
 // Audio will still play, you'll still get console logs, but the UI dies
 // TODO: Fix, it's 2AM
 // Also TODO: Sync setIsPlaying with audioPlayer
+// Also TODO: Logarithmic volume control
 
 export function AudioPlayer() {
   const [currentTrack, setCurrentTrack] = useState(0);
