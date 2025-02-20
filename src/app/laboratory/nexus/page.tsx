@@ -3,7 +3,7 @@ import {
   IconClock,
   IconGlobe,
   IconKey,
-  IconPartlyClouded,
+  IconPartlyCloudy,
   IconRain,
   IconSettings,
   IconCalendar,
@@ -20,10 +20,10 @@ export default function PageNexus() {
     { label: "Settings", icon: <IconSettings aria-label="Settings" /> },
   ];
   const weather = [
-    { quarter: "Current", temp: 68, rain: 0, icon: <IconPartlyClouded aria-label="Partly Cloudy" /> },
-    { quarter: "Night", temp: 74, rain: 1, icon: <IconPartlyClouded aria-label="Partly Cloudy" /> },
-    { quarter: "Morning", temp: 72, rain: 2, icon: <IconPartlyClouded aria-label="Partly Cloudy" /> },
-    { quarter: "Noon", temp: 67, rain: 0, icon: <IconPartlyClouded aria-label="Partly Cloudy" /> },
+    { quarter: "Current", temp: 68, rain: 0, icon: <IconPartlyCloudy aria-label="Partly Cloudy" /> },
+    { quarter: "Night", temp: 74, rain: 1, icon: <IconPartlyCloudy aria-label="Partly Cloudy" /> },
+    { quarter: "Morning", temp: 72, rain: 2, icon: <IconPartlyCloudy aria-label="Partly Cloudy" /> },
+    { quarter: "Noon", temp: 67, rain: 0, icon: <IconPartlyCloudy aria-label="Partly Cloudy" /> },
   ];
 
   return (

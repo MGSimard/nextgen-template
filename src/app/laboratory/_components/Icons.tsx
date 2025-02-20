@@ -11,7 +11,7 @@ export function IconClock() {
   );
 }
 
-export function IconPartlyClouded(props: React.SVGProps<SVGSVGElement>) {
+export function IconPartlyCloudy(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
