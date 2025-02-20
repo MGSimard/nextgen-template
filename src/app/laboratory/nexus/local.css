@@ -105,9 +105,9 @@
   object-fit: cover;
   border: 1px solid var(--clrBorder);
 }
-#pnm-player {
-  display: none !important; /* No matter what */
-}
+/* #pnm-player {
+  display: none !important; 
+} */
 #pnm-meta {
   flex-grow: 1;
   display: flex;
