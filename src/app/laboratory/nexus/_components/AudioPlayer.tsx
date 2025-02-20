@@ -3,11 +3,16 @@ import { useState, useEffect, useRef } from "react";
 import { IconForward, IconBackward, IconPlay } from "../../_components/Icons";
 import { IconPause } from "../../_components/Icons";
 
-// This whole shit dies on refresh, as in can no longer interact with it at least visually
-// Audio will still play, you'll still get console logs, but the UI dies
-// TODO: Fix, it's 2AM
-// Also TODO: Sync setIsPlaying with audioPlayer
-// Also TODO: Logarithmic volume control
+/** TASK LIST
+ * - Fix UI dying on refresh (only seems to happen on desktop), audio still plays, console logs still print.
+ * - Sync setIsPlaying with audioPlayer
+ * - Logarithmic volume control
+ * - Swap to a vertical popover volume control
+ * - Override input[type="range"] appearance across all browsers (or make my own element)
+ * - Add album image for Cyberpunk 2077 soundtrack
+ * - Add track title scrolling
+ * - Fit site header to navtrigger button height (match my vPulse changes)
+ */
 
 export function AudioPlayer() {
   const [currentTrack, setCurrentTrack] = useState(0);
