@@ -39,23 +39,37 @@ export function AudioPlayer() {
     };
     const autoNextTrack = () => {
       console.log("Auto next track");
+      setIsPlaying(false); // Consider removing this
       setCurrentTrack((prev) => (prev + 1) % trackSrcs.length);
       audioPlayer.load();
-      audioPlayer
-        .play()
-        .catch((err) => console.error(err))
-        .finally(() => setIsPlaying(true));
+      audioPlayer.play().catch((err) => console.error(err));
+    };
+    const syncPlay = () => {
+      setIsPlaying(true);
+    };
+    const syncPause = () => {
+      setIsPlaying(false);
+    };
+    const syncError = () => {
+      console.error("ERROR: Audio error occurred", audioPlayer.error);
+      audioPlayer.pause();
+      setIsPlaying(false);
     };
 
     audioPlayer.addEventListener("loadedmetadata", updateDuration);
     audioPlayer.addEventListener("timeupdate", updateCurrentTime);
     audioPlayer.addEventListener("ended", autoNextTrack);
+    audioPlayer.addEventListener("play", syncPlay);
+    audioPlayer.addEventListener("pause", syncPause);
+    audioPlayer.addEventListener("error", syncError);
 
     return () => {
       console.log("Audio player unmounted");
       audioPlayer.removeEventListener("loadedmetadata", updateDuration);
       audioPlayer.removeEventListener("timeupdate", updateCurrentTime);
       audioPlayer.removeEventListener("ended", autoNextTrack);
+      audioPlayer.removeEventListener("play", syncPlay);
+      audioPlayer.removeEventListener("pause", syncPause);
     };
   }, [audioPlayerRef]);
 
@@ -68,13 +82,9 @@ export function AudioPlayer() {
       if (audioPlayer.error) {
         audioPlayer.load();
       }
-      audioPlayer
-        .play()
-        .catch((err) => console.error(err))
-        .finally(() => setIsPlaying(true));
+      audioPlayer.play().catch((err) => console.error(err));
     } else {
       audioPlayer.pause();
-      setIsPlaying(false);
     }
   };
 
@@ -83,12 +93,10 @@ export function AudioPlayer() {
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer) return;
 
+    setIsPlaying(false); // Consider removing this
     setCurrentTrack((prev) => (prev + 1) % trackSrcs.length);
     audioPlayer.load();
-    audioPlayer
-      .play()
-      .catch((err) => console.error(err))
-      .finally(() => setIsPlaying(true));
+    audioPlayer.play().catch((err) => console.error(err));
   };
 
   const handlePrevious = () => {
@@ -96,12 +104,10 @@ export function AudioPlayer() {
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer) return;
 
+    setIsPlaying(false); // Consider removing this
     setCurrentTrack((prev) => (prev - 1 + trackSrcs.length) % trackSrcs.length);
     audioPlayer.load();
-    audioPlayer
-      .play()
-      .catch((err) => console.error(err))
-      .finally(() => setIsPlaying(true));
+    audioPlayer.play().catch((err) => console.error(err));
   };
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -124,7 +130,6 @@ export function AudioPlayer() {
     if (isFinite(time) && isFinite(limit)) {
       return ((time / limit) * 100).toFixed(2);
     }
-
     return "0.00";
   };
 
