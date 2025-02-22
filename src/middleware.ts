@@ -18,5 +18,5 @@ export default async function authMiddleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [""],
+  matcher: ["/sign-in", "/dashboard/:path*"],
 };
