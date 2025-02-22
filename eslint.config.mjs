@@ -1,6 +1,4 @@
-/** @ts-expect-error - @eslint/eslintrc is untyped */
 import { FlatCompat } from "@eslint/eslintrc";
-import tsEslint from "@typescript-eslint/eslint-plugin";
 import tsParser from "@typescript-eslint/parser";
 /** @ts-expect-error - eslint-plugin-drizzle is untyped */
 import drizzle from "eslint-plugin-drizzle";
@@ -20,7 +18,6 @@ export default [
   ),
   {
     plugins: {
-      "@typescript-eslint": tsEslint,
       drizzle,
       "react-compiler": reactCompiler,
     },
