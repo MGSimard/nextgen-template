@@ -203,11 +203,11 @@ table td:last-child {
 }
 .btn:hover,
 .btn:focus-visible {
-  background: var(----clrHover);
+  background: var(--clrHover);
 }
 .btn:active {
-  color: var(--clrText);
-  background: var(--clrBg);
+  color: var(--clrBg);
+  background: var(--clrText);
 }
 .detail {
   color: var(--clrDetail);
