@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { TestFletchAPI } from "./_components/TestFetchAPI";
 
 export default async function PageLaboratory() {
   const LabLinks = [
@@ -23,9 +22,6 @@ export default async function PageLaboratory() {
               </li>
             ))}
           </ul>
-        </section>
-        <section>
-          <TestFletchAPI />
         </section>
       </main>
     </>
