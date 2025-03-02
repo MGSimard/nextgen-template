@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default async function PageLaboratory() {
+export default function PageLaboratory() {
   const LabLinks = [
     {
       name: "Nexus",

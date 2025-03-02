@@ -1,14 +1,6 @@
-import { SignInToast } from "@/components/SignInToast";
-
-type SearchParams = Promise<Record<string, string | string[] | undefined>>;
-
-export default async function PageDashboard({ searchParams }: { searchParams: SearchParams }) {
-  const resolved = await searchParams;
-  const authSuccess = resolved["auth-success"];
-
+export default function PageDashboard() {
   return (
     <main>
-      {authSuccess === "true" && <SignInToast />}
       <section>
         <h2>Section</h2>
         <p>

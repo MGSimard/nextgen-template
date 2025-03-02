@@ -10,7 +10,7 @@ export function SignInButtons() {
       onClick: async () => {
         await authClient.signIn.social({
           provider: "google",
-          callbackURL: "/dashboard?auth-success=true",
+          callbackURL: "/dashboard",
         });
       },
     },

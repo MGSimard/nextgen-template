@@ -9,6 +9,7 @@ const config = {
   reactStrictMode: false,
   experimental: {
     reactCompiler: true,
+    nodeMiddleware: true,
   },
 };
 

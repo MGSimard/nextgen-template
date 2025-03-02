@@ -1,4 +1,4 @@
-export default async function PageNested() {
+export default function PageNested() {
   return (
     <main>
       <section>
