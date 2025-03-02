@@ -18,5 +18,6 @@ export default async function authMiddleware(request: NextRequest) {
 }
 
 export const config = {
+  runtime: "nodejs",
   matcher: ["/sign-in", "/dashboard/:path*"],
 };
