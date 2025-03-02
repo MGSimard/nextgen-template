@@ -108,18 +108,18 @@ export default function PageHome() {
 }
 
 const techStack = [
-  ["Next.js", "15.1.7", "FullStack Environment", "https://nextjs.org/docs", "nextjs.org"],
+  ["Next.js", "15.2.0", "FullStack Environment", "https://nextjs.org/docs", "nextjs.org"],
   ["React", "19.0.0", "Compiler Enabled", "https://react.dev", "react.dev"],
-  ["TypeScript", "5.7.3", "Type Safety", "https://www.typescriptlang.org/docs", "typescriptlang.org"],
+  ["TypeScript", "5.8.2", "Type Safety", "https://www.typescriptlang.org/docs", "typescriptlang.org"],
   ["Neon", "0.10.4", "Database", "https://neon.tech/docs/introduction", "neon.tech"],
   ["PostgreSQL", "3.4.5", "Database Management", "https://www.postgresql.org/docs", "postgresql.org"],
-  ["Drizzle", "0.39.3", "ORM", "https://orm.drizzle.team/docs/overview", "orm.drizzle.team"],
-  ["Drizzle Kit", "0.30.4", "Database Migration", "https://orm.drizzle.team/docs/kit-overview", "orm.drizzle.team"],
-  ["Better Auth", "1.1.21", "Authentication", "https://www.better-auth.com/docs/introduction", "better-auth.com"],
+  ["Drizzle", "0.40.0", "ORM", "https://orm.drizzle.team/docs/overview", "orm.drizzle.team"],
+  ["Drizzle Kit", "0.30.5", "Database Migration", "https://orm.drizzle.team/docs/kit-overview", "orm.drizzle.team"],
+  ["Better Auth", "1.2.0", "Authentication", "https://www.better-auth.com/docs/introduction", "better-auth.com"],
   ["Zod", "3.24.2", "Validation", "https://zod.dev", "zod.dev"],
   ["ESLint", "9.21.0", "Flat Config", "https://eslint.org/docs/latest", "eslint.org"],
   ["t3-oss/env", "0.12.0", ".env Type Safety", "https://create.t3.gg/en/usage/env-variables", "create.t3.gg"],
-  ["pnpm", "9.15.4", "Package Manager", "https://pnpm.io/motivation", "pnpm.io"],
+  ["pnpm", "10.4.1", "Package Manager", "https://pnpm.io/motivation", "pnpm.io"],
   ["Vercel", "-", "Hosting", "https://vercel.com/docs", "vercel.com"],
   [
     "next-themes",
