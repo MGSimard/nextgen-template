@@ -18,8 +18,8 @@ importers:
         specifier: ^0.12.0
         version: 0.12.0(typescript@5.8.2)(valibot@1.0.0-beta.15(typescript@5.8.2))(zod@3.24.2)
       better-auth:
-        specifier: 1.2.0
-        version: 1.2.0(typescript@5.8.2)
+        specifier: 1.2.1
+        version: 1.2.1(typescript@5.8.2)
       drizzle-orm:
         specifier: ^0.40.0
         version: 0.40.0(@neondatabase/serverless@0.10.4)(@types/pg@8.11.6)(gel@2.0.0)(kysely@0.27.5)(postgres@3.4.5)
@@ -972,8 +972,8 @@ packages:
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
-  better-auth@1.2.0:
-    resolution: {integrity: sha512-eIRGOXfix25bh4fgs8jslZAZssufpIkxfEeEokQu5G4wICoDee1wPctkFb8v80PvhtI4dPm28SuAoZaAdRc6Wg==}
+  better-auth@1.2.1:
+    resolution: {integrity: sha512-ehECh654Y32pseRiAwHiDdqemCX5oM/B/N52heqVcRbgiVKC61FgdrBwBkQb9jV2jBk7E+C8iDZ5Nqshck3O1g==}
 
   better-call@1.0.3:
     resolution: {integrity: sha512-DUKImKoDIy5UtCvQbHTg0wuBRse6gu1Yvznn7+1B3I5TeY8sclRPFce0HI+4WF2bcb+9PqmkET8nXZubrHQh9A==}
@@ -3084,7 +3084,7 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
-  better-auth@1.2.0(typescript@5.8.2):
+  better-auth@1.2.1(typescript@5.8.2):
     dependencies:
       '@better-auth/utils': 0.2.3
       '@better-fetch/fetch': 1.1.15

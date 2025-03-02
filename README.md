@@ -13,23 +13,23 @@ Its main purpose is for quickstarting my own personal projects with a bleeding e
 
 <tr><td>
 
-| Tech        | Version | Info                  | Documentation                                                                    |
-| ----------- | ------- | --------------------- | -------------------------------------------------------------------------------- |
-| Next.js     | 15.2.0  | FullStack Environment | [nextjs.org](https://nextjs.org/docs)                                            |
-| React       | 19.0.0  | Compiler Enabled      | [react.dev](https://react.dev/)                                                  |
-| TypeScript  | 5.8.2   | Type Safety           | [typescriptlang.org](https://www.typescriptlang.org/docs/)                       |
-| Neon        | 0.10.4  | Database              | [neon.tech](https://neon.tech/docs/introduction)                                 |
-| PostgreSQL  | 3.4.5   | Database Management   | [postgresql.org](https://www.postgresql.org/docs/)                               |
-| Drizzle     | 0.40.0  | ORM                   | [orm.drizzle.team](https://orm.drizzle.team/docs/overview)                       |
-| Drizzle Kit | 0.30.5  | Database Migration    | [orm.drizzle.team](https://orm.drizzle.team/docs/kit-overview)                   |
-| Better Auth | 1.2.0   | Authentication        | [better-auth.com](https://www.better-auth.com/docs/introduction)                 |
-| Zod         | 3.24.2  | Validation            | [zod.dev](https://zod.dev/)                                                      |
-| ESLint      | 9.21.0  | Flat Config           | [eslint.org](https://eslint.org/docs/latest/)                                    |
-| t3-oss/env  | 0.12.0  | .env Type Safety      | [create.t3.gg](https://create.t3.gg/en/usage/env-variables)                      |
-| pnpm        | 10.4.1  | Package Manager       | [pnpm.io](https://pnpm.io/motivation)                                            |
-| Vercel      | -       | Hosting               | [vercel.com](https://vercel.com/docs)                                            |
-| next-themes | 0.4.4   | Theme Toggling        | [github.com/pacocoursey/next-themes](https://github.com/pacocoursey/next-themes) |
-| Sonner      | 2.0.1   | UI Notifications      | [sonner.emilkowal.ski](https://sonner.emilkowal.ski/getting-started)             |
+| Tech        | Version         | Info                  | Documentation                                                                    |
+| ----------- | --------------- | --------------------- | -------------------------------------------------------------------------------- |
+| Next.js     | 15.2.1-canary.5 | FullStack Environment | [nextjs.org](https://nextjs.org/docs)                                            |
+| React       | 19.0.0          | Compiler Enabled      | [react.dev](https://react.dev/)                                                  |
+| TypeScript  | 5.8.2           | Type Safety           | [typescriptlang.org](https://www.typescriptlang.org/docs/)                       |
+| Neon        | 0.10.4          | Database              | [neon.tech](https://neon.tech/docs/introduction)                                 |
+| PostgreSQL  | 3.4.5           | Database Management   | [postgresql.org](https://www.postgresql.org/docs/)                               |
+| Drizzle     | 0.40.0          | ORM                   | [orm.drizzle.team](https://orm.drizzle.team/docs/overview)                       |
+| Drizzle Kit | 0.30.5          | Database Migration    | [orm.drizzle.team](https://orm.drizzle.team/docs/kit-overview)                   |
+| Better Auth | 1.2.1           | Authentication        | [better-auth.com](https://www.better-auth.com/docs/introduction)                 |
+| Zod         | 3.24.2          | Validation            | [zod.dev](https://zod.dev/)                                                      |
+| ESLint      | 9.21.0          | Flat Config           | [eslint.org](https://eslint.org/docs/latest/)                                    |
+| t3-oss/env  | 0.12.0          | .env Type Safety      | [create.t3.gg](https://create.t3.gg/en/usage/env-variables)                      |
+| pnpm        | 10.4.1          | Package Manager       | [pnpm.io](https://pnpm.io/motivation)                                            |
+| Vercel      | -               | Hosting               | [vercel.com](https://vercel.com/docs)                                            |
+| next-themes | 0.4.4           | Theme Toggling        | [github.com/pacocoursey/next-themes](https://github.com/pacocoursey/next-themes) |
+| Sonner      | 2.0.1           | UI Notifications      | [sonner.emilkowal.ski](https://sonner.emilkowal.ski/getting-started)             |
 
 </td></tr> </table>
 
