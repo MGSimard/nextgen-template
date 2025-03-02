@@ -234,6 +234,7 @@ For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
 
 ## TASK LIST
 
+- [ ] Middleware sux, moved off of it, set up a supense component for dashboard layout auth await
 - [ ] Deal with signout redirection not working if signing out when on a 404-type page
 - [ ] User settings page
 - [ ] Account/User deletion
