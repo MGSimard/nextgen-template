@@ -2,22 +2,20 @@ import { FlatCompat } from "@eslint/eslintrc";
 import tsParser from "@typescript-eslint/parser";
 import drizzle from "eslint-plugin-drizzle";
 import reactCompiler from "eslint-plugin-react-compiler";
+import tseslint from "typescript-eslint";
 
 const compat = new FlatCompat({
   baseDirectory: import.meta.dirname,
 });
 
-/** @type {import("eslint").Linter.Config[]} */
-export default [
-  ...compat.extends(
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/recommended-type-checked",
-    "plugin:@typescript-eslint/stylistic-type-checked"
-  ),
+export default tseslint.config(
+  tseslint.configs.recommendedTypeChecked,
+  tseslint.configs.stylisticTypeChecked,
+  ...compat.extends("next/core-web-vitals"),
   {
     plugins: {
-      drizzle,
       "react-compiler": reactCompiler,
+      drizzle,
     },
     languageOptions: {
       parser: tsParser,
@@ -25,6 +23,7 @@ export default [
       sourceType: "module",
       parserOptions: {
         project: true,
+        tsconfigRootDir: import.meta.dirname,
       },
     },
     rules: {
@@ -66,5 +65,5 @@ export default [
       ],
       "react-compiler/react-compiler": "error",
     },
-  },
-];
+  }
+);
