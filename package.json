@@ -61,7 +61,7 @@
     "babel-plugin-react-compiler": "19.0.0-beta-e1e972c-20250221",
     "drizzle-kit": "^0.30.5",
     "eslint": "^9.21.0",
-    "eslint-config-next": "^15.2.0",
+    "eslint-config-next": "15.2.1-canary.5",
     "eslint-plugin-drizzle": "^0.2.3",
     "eslint-plugin-react-compiler": "19.0.0-beta-e1e972c-20250221",
     "typescript": "^5.8.2"
