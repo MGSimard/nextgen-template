@@ -1,8 +1,6 @@
 import { FlatCompat } from "@eslint/eslintrc";
 import tsParser from "@typescript-eslint/parser";
-/** @ts-expect-error - eslint-plugin-drizzle is untyped */
 import drizzle from "eslint-plugin-drizzle";
-/** @ts-expect-error - eslint-plugin-react-compiler is untyped */
 import reactCompiler from "eslint-plugin-react-compiler";
 
 const compat = new FlatCompat({
