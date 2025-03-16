@@ -5,7 +5,6 @@ import { IconPause } from "../../_components/Icons";
 
 /** TASK LIST
  * - Fix UI dying on refresh (only seems to happen on desktop), audio still plays, console logs still print.
- * - Logarithmic volume control
  * - Swap to a vertical popover volume control
  * - Override input[type="range"] appearance across all browsers (or make my own element)
  * - Add album image for Cyberpunk 2077 soundtrack
@@ -13,19 +12,26 @@ import { IconPause } from "../../_components/Icons";
  * - Find sharper control icons or make them myself
  */
 
+const toLogarithmicVolume = (value: number) => {
+  const logarithmicVolume = (Math.pow(10, value / 100) - 1) / 9;
+  const clampedOutput = Math.min(Math.max(logarithmicVolume, 0), 1);
+  return clampedOutput;
+};
+
 export function AudioPlayer() {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
+  const initialVolume = 50;
 
   useEffect(() => {
     console.log("Audio player mounted");
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer) return;
 
-    audioPlayer.volume = 0.5;
+    audioPlayer.volume = toLogarithmicVolume(initialVolume);
 
     const updateDuration = () => {
       console.log("Metadata loaded");
@@ -120,8 +126,12 @@ export function AudioPlayer() {
   const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer) return;
-    // Implement logarithmic scaling later (lol)
-    audioPlayer.volume = Number(e.target.value) / 100;
+    const value = Number(e.target.value);
+
+    const logarithmicVolume = toLogarithmicVolume(value);
+    audioPlayer.volume = logarithmicVolume;
+    console.log("Input value:", value);
+    console.log("Logarithmic volume:", logarithmicVolume);
   };
 
   const updateSeeker = (time: number, limit: number) => {
@@ -166,7 +176,7 @@ export function AudioPlayer() {
             <button type="button" onClick={handleNext}>
               <IconForward aria-label="Next" />
             </button>
-            <input type="range" defaultValue={50} onChange={handleVolume} />
+            <input type="range" defaultValue={initialVolume} onChange={handleVolume} />
           </div>
         </div>
         <input
