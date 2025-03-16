@@ -1,4 +1,4 @@
 User-Agent: *
 Allow: /
-Disallow: /dashboard/*
+Disallow: /dashboard/
 Sitemap: https://nextgen-template.vercel.app/sitemap.xml
