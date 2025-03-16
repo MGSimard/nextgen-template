@@ -258,6 +258,8 @@ For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
 
 ## TASK LIST
 
+- [ ] Globally style sliders, might have to default to custom elements
+- [ ] Logarithmic scale volume on audio player, this is very important
 - [ ] Deal with signout redirection not working if signing out when on a 404-type page
 - [ ] User settings page
 - [ ] Account/User deletion
