@@ -4,7 +4,6 @@ import { IconForward, IconBackward, IconPlay } from "../../_components/Icons";
 import { IconPause } from "../../_components/Icons";
 
 /** TASK LIST
- * - Fix UI dying on refresh (only seems to happen on desktop), audio still plays, console logs still print.
  * - Swap to a vertical popover volume control
  * - Override input[type="range"] appearance across all browsers (or make my own element)
  * - Add album image for Cyberpunk 2077 soundtrack
@@ -23,125 +22,151 @@ export function AudioPlayer() {
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
   const initialVolume = 25;
 
   useEffect(() => {
-    console.log("Audio player mounted");
+    setDuration(0);
+    setCurrentTime(0);
+    setIsLoading(true);
+  }, [currentTrack]);
+
+  useEffect(() => {
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer) return;
 
     audioPlayer.volume = toLogarithmicVolume(initialVolume);
 
     const updateDuration = () => {
-      console.log("Metadata loaded");
       setDuration(audioPlayer.duration);
+      setIsLoading(false);
     };
+
     const updateCurrentTime = () => {
-      console.log("Time updated");
       setCurrentTime(audioPlayer.currentTime);
+      if (duration === 0 && audioPlayer.duration > 0) {
+        setDuration(audioPlayer.duration);
+        setIsLoading(false);
+      }
     };
-    const autoNextTrack = () => {
-      console.log("Auto next track");
-      setIsPlaying(false); // Consider removing this
-      setCurrentTrack((prev) => (prev + 1) % trackSrcs.length);
-      audioPlayer.load();
-      audioPlayer.play().catch((err) => console.error(err));
+
+    const handleCanPlay = () => {
+      if (duration === 0 && audioPlayer.duration > 0) {
+        setDuration(audioPlayer.duration);
+      }
+      setIsLoading(false);
     };
-    const syncPlay = () => {
+
+    const handlePlay = () => {
       setIsPlaying(true);
     };
-    const syncPause = () => {
+
+    const handlePause = () => {
       setIsPlaying(false);
     };
-    const syncError = () => {
-      console.error("ERROR: Audio error occurred", audioPlayer.error);
+
+    const handleEnded = () => {
+      handleNextTrack();
+    };
+
+    const handleError = () => {
       audioPlayer.pause();
       setIsPlaying(false);
+      setIsLoading(false);
     };
+
+    if (audioPlayer.readyState >= 2 && audioPlayer.duration) {
+      setDuration(audioPlayer.duration);
+      setIsLoading(false);
+    }
 
     audioPlayer.addEventListener("loadedmetadata", updateDuration);
     audioPlayer.addEventListener("timeupdate", updateCurrentTime);
-    audioPlayer.addEventListener("ended", autoNextTrack);
-    audioPlayer.addEventListener("play", syncPlay);
-    audioPlayer.addEventListener("pause", syncPause);
-    audioPlayer.addEventListener("error", syncError);
+    audioPlayer.addEventListener("canplay", handleCanPlay);
+    audioPlayer.addEventListener("play", handlePlay);
+    audioPlayer.addEventListener("pause", handlePause);
+    audioPlayer.addEventListener("ended", handleEnded);
+    audioPlayer.addEventListener("error", handleError);
 
     return () => {
-      console.log("Audio player unmounted");
       audioPlayer.removeEventListener("loadedmetadata", updateDuration);
       audioPlayer.removeEventListener("timeupdate", updateCurrentTime);
-      audioPlayer.removeEventListener("ended", autoNextTrack);
-      audioPlayer.removeEventListener("play", syncPlay);
-      audioPlayer.removeEventListener("pause", syncPause);
+      audioPlayer.removeEventListener("canplay", handleCanPlay);
+      audioPlayer.removeEventListener("play", handlePlay);
+      audioPlayer.removeEventListener("pause", handlePause);
+      audioPlayer.removeEventListener("ended", handleEnded);
+      audioPlayer.removeEventListener("error", handleError);
     };
-  }, [audioPlayerRef]);
+  }, [currentTrack, duration]);
 
-  const handlePlayPause = () => {
-    console.log("Play/Pause");
+  const changeTrack = (newTrackIndex: number) => {
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer) return;
+    setIsPlaying(false);
+    setDuration(0);
+    setCurrentTime(0);
+    setIsLoading(true);
+    setCurrentTrack(newTrackIndex);
+    setTimeout(() => {
+      audioPlayer.load();
+      audioPlayer.play().catch((err) => {
+        console.error("Error playing track:", err);
+        setIsLoading(false);
+      });
+    }, 0);
+  };
 
+  const handleNextTrack = () => {
+    const nextTrack = (currentTrack + 1) % trackSrcs.length;
+    changeTrack(nextTrack);
+  };
+
+  const handlePreviousTrack = () => {
+    const prevTrack = (currentTrack - 1 + trackSrcs.length) % trackSrcs.length;
+    changeTrack(prevTrack);
+  };
+
+  const handlePlayPause = () => {
+    const audioPlayer = audioPlayerRef.current;
+    if (!audioPlayer) return;
     if (audioPlayer.paused || audioPlayer.ended) {
       if (audioPlayer.error) {
         audioPlayer.load();
       }
-      audioPlayer.play().catch((err) => console.error(err));
+      audioPlayer.play().catch((err) => console.error("Error playing:", err));
     } else {
       audioPlayer.pause();
     }
   };
 
-  const handleNext = () => {
-    console.log("Next");
-    const audioPlayer = audioPlayerRef.current;
-    if (!audioPlayer) return;
-
-    setIsPlaying(false); // Consider removing this
-    setCurrentTrack((prev) => (prev + 1) % trackSrcs.length);
-    audioPlayer.load();
-    audioPlayer.play().catch((err) => console.error(err));
-  };
-
-  const handlePrevious = () => {
-    console.log("Previous");
-    const audioPlayer = audioPlayerRef.current;
-    if (!audioPlayer) return;
-
-    setIsPlaying(false); // Consider removing this
-    setCurrentTrack((prev) => (prev - 1 + trackSrcs.length) % trackSrcs.length);
-    audioPlayer.load();
-    audioPlayer.play().catch((err) => console.error(err));
-  };
-
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const audioPlayer = audioPlayerRef.current;
-    if (!audioPlayer) return;
-
+    if (!audioPlayer || duration <= 0) return;
     const percentage = Number(e.target.value) / 100;
     const time = duration * percentage;
     audioPlayer.currentTime = time;
+    setCurrentTime(time);
   };
 
   const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer) return;
-    const value = Number(e.target.value);
-
-    const logarithmicVolume = toLogarithmicVolume(value);
+    const logarithmicVolume = toLogarithmicVolume(Number(e.target.value));
     audioPlayer.volume = logarithmicVolume;
-    console.log("Input value:", value);
-    console.log("Logarithmic volume:", logarithmicVolume);
   };
 
   const updateSeeker = (time: number, limit: number) => {
-    if (isFinite(time) && isFinite(limit)) {
+    if (isFinite(time) && isFinite(limit) && limit > 0) {
       return ((time / limit) * 100).toFixed(2);
     }
-    return "0.00";
+    return "0";
   };
 
   const formatTime = (seconds: number) => {
+    if (!isFinite(seconds) || seconds === 0) {
+      return "--:--:--";
+    }
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const remainingSeconds = Math.floor(seconds % 60);
@@ -156,34 +181,44 @@ export function AudioPlayer() {
         {trackSrcs[currentTrack] ? <source src={trackSrcs[currentTrack]?.src} type="audio/mp3" /> : null}
       </audio>
       <img
-        alt="LOGO"
+        alt="Cover"
         src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
       />
       <div id="pnm-meta">
         <div id="pnm-head">
           <span id="pnm-title">{trackSrcs[currentTrack]?.trackName ?? "-"}</span>
           <div id="pnm-controls">
-            {/* NEED NEW SHARPER BUTTON ICONS */}
             <span id="pnm-time">
-              {formatTime(currentTime)}/{formatTime(duration)}
+              {formatTime(currentTime)}/{isLoading ? "--:--:--" : formatTime(duration)}
             </span>
-            <button type="button" onClick={handlePrevious}>
+            <button type="button" onClick={handlePreviousTrack} disabled={isLoading}>
               <IconBackward aria-label="Previous" />
             </button>
-            <button type="button" onClick={handlePlayPause}>
+            <button type="button" onClick={handlePlayPause} disabled={isLoading}>
               {isPlaying ? <IconPause aria-label="Pause" /> : <IconPlay aria-label="Play" />}
             </button>
-            <button type="button" onClick={handleNext}>
+            <button type="button" onClick={handleNextTrack} disabled={isLoading}>
               <IconForward aria-label="Next" />
             </button>
-            <input type="range" defaultValue={initialVolume} onChange={handleVolume} />
+            <input
+              type="range"
+              min="0"
+              max="100"
+              defaultValue={initialVolume}
+              onChange={handleVolume}
+              aria-label="Volume"
+            />
           </div>
         </div>
         <input
           id="pnm-seeker"
           type="range"
+          min="0"
+          max="100"
           value={duration > 0 ? updateSeeker(currentTime, duration) : 0}
           onChange={handleSeek}
+          disabled={duration <= 0 || isLoading}
+          aria-label="Seek"
         />
       </div>
     </div>
