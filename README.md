@@ -35,76 +35,68 @@ Its main purpose is for quickstarting my own personal projects with a bleeding e
 
 ## Additional Information
 
-<details><summary>Considerations.</summary>
+<details><summary><b>Future Considerations</b></summary>
 
 - Build a CLI tool + npm package
 - Zustand
 - tRPC
 - Hono
 - Bun
-- TanStack Query (Client-side)
+- TanStack Query (Client-side Fetching)
 - Superjson
+
+---
 
 </details>
 
-<details><summary>Database choices.</summary>
+<details><summary><b>Database Recommendations</b></summary>
 
-Neon should only be used for its free tier offering _(it's slower, and has horrible cold-start performance)_. Anything serious should be running on better, for-purpose DB solutions (separate your general storage, rate limiting, etc). If you're looking to get serious performance for live production applications I would recommend the following options instead:
+Neon is best suited for its free tier due to slow performance and poor cold-start times. For serious applications, consider using dedicated database solutions for better performance, storage, and rate limiting:
 
-General
+**General Use:**
 
 - Supabase (PostgreSQL)
 - PlanetScale (MySQL)
 
-High-Throughput (Rate limiting, Session Management, Caching, etc)
+**High-Throughput _(Rate limiting, Session Management, Caching, etc)_:**
 
 - Upstash (Redis)
 
-Edge & Local First
+**Edge & Local First:**
 
-- Turso (SQLite/libSQL)
+- Turso (SQLite & libSQL)
+- Dexie.js (NoSQL/IndexedDB Wrapper)
+
+---
 
 </details>
 
-<details><summary>Multi-project schema pattern from T3 has been disabled.</summary>
-<ol>
-<li>Now that Vercel has fully migrated the Vercel Postgres option to Neon, free tier users can have more than one Postgres database.</li>
-<li>Newer versions of Drizzle Kit have been bugged with multi-project schema setups for a while now. Though it fails to, <a href="https://github.com/drizzle-team/drizzle-orm/issues/3320#issuecomment-2461087002">migration actively attempts to drop your sequences.</a></li>
-</ol>
+<details><summary><b>Multi-project schema pattern from T3 has been disabled.</b></summary>
+
+1. Vercel's migration to Neon allows free tier users to have multiple Postgres databases.
+2. Recent Drizzle Kit versions have issues with multi-project schemas, <a href="https://github.com/drizzle-team/drizzle-orm/issues/3320#issuecomment-2461087002">including a bug where migrations may attempt to drop sequences</a>.
+
+---
+
 </details>
 
-<details><summary>Better Auth: Disabling user registration.</summary>
+<details><summary><b>Better Auth: Disabling user registration.</b></summary>
 
 ~~Note: There is currently a [PR open](https://github.com/better-auth/better-auth/pull/1428) to introduce a signupsDisabled flag. You would still be able to create users as an admin using authClient.admin -- and role granularity for admin actions could be achieved with [this additional PR](https://github.com/better-auth/better-auth/pull/1424).~~
 
-**UPDATE: [Our PR got merged](https://github.com/better-auth/better-auth/pull/1428). You can now disable sign ups for any enabled social provider & emailAndPassword option by adding disableSignUp: true; to those individual options.** See below for more information.
+**Update:** Our [PR](https://github.com/better-auth/better-auth/pull/1428) to add a `disableSignUp` flag has been merged. You can now disable sign ups for any enabled social provider and the `emailAndPassword` option by setting `disableSignUp: true` on any of those individual options when used.
 
-If you decide to use Email & Password you should know that your sign-up endpoint becomes publicly accessible by default, meaning anyone can create an account regardless of whether or not you give them an accessible, programmatic way to do so from within the application.
+**If you decide to use Email & Password you should know that your sign-up endpoint becomes publicly accessible by default**, meaning anyone can create an account regardless of whether or not you give them an accessible, programmatic way to do so from within the application.
 
-- While emailAndPassword is enabled in your auth config, the `/api/sign-up/email` endpoint becomes accessible by default.
-- This means even if you offer no way for users to sign up in say, a private application, they can still create an account by hitting up your sign-up endpoint with a POST request to http://example.com/api/auth/sign-up/email with email/password/name in the request body.
-- _Edit (2025/03/16):_ I haven't looked it this behaviour for OAuth, but considering the new disableSignUp flag can be used in OAuth providers, I'd assume it's identical.
+- While `emailAndPassword` is enabled in your auth config, the `/api/sign-up/email` endpoint becomes accessible by default.
+- This means even if you offer no way for users to sign up in say, a private application, they can still create an account by hitting up your sign-up endpoint with a `POST` request to `http://example.com/api/auth/sign-up/email` with email/password/name in the request body.
+- _Edit (2025/03/16):_ I haven't looked it this behaviour for OAuth, but considering the new `disableSignUp` flag can also be used in social providers, I'd assume it's similar.
 
-~~In order to prevent this, should you choose to lock down registration, Better Auth does not currently have a betterAuth() flag to do this easily. Instead you have to intercept the API request with an auth middleware and reject their request. You can add the code below to your betterAuth config alongside database: {}, session: {}, etc:~~
-
-**OBSOLETE METHOD**
+**New Method (BetterAuth &gt;=1.2):**
 
 ```
-// THIS METHOD IS NOW OBSOLETE
-hooks: {
-  before: createAuthMiddleware(async (ctx) => {
-    if (ctx.path.startsWith("/sign-up")) {
-      return NextResponse.json({ error: "ERROR: Registration disabled." }, { status: 401 });
-    }
-  }),
-},
-
-```
-
-**NEW METHOD**
-
-```
-// NEW METHOD -  Add disableSignUp flag - not necessary if provider isn't enabled.
+// /server/auth/index.js
+// NEW METHOD - disableSignUp flag (not necessary if provider isn't enabled)
 emailAndPassword: {
   enabled: true,
   disableSignUp: true,
@@ -118,14 +110,31 @@ socialProviders: {
 },
 ```
 
-Extra:
+**Obsolete Method (BetterAuth &lt;1.2):**
 
-- Currently, when emailAndPassword aren't enabled, the /sign-up/email endpoint is still created. Though it does respond with an error stating that registration is disabled, I don't feel like it makes sense to include the endpoint to begin with if the feature itself is disabled entirely. A little bloat here and there stacks up to a lot of bloat down the line.
+Intercept the API request with an auth middleware and reject their request. You can add the code below to your betterAuth config alongside database: {}, session: {}, etc:
+
+```
+// /server/auth/index.js
+// OLD METHOD - Obsolete for Better Auth >=1.2
+hooks: {
+  before: createAuthMiddleware(async (ctx) => {
+    if (ctx.path.startsWith("/sign-up")) {
+      return NextResponse.json({ error: "ERROR: Registration disabled." }, { status: 401 });
+    }
+  }),
+},
+
+```
+
+**Extra:** When `emailAndPassword` isn't enabled, the `/sign-up/email` endpoint is still created. Though it does respond with an error stating that registration is disabled, I don't feel like it makes sense to include the endpoint to begin with if the feature itself is disabled entirely. A little bloat here and there stacks up to a lot of bloat down the line.
+
+---
 
 </details>
 
 <details>
-<summary>Better Auth/Next.js issue: Clearing cache for protected routes after Sign In/Out.</summary>
+<summary><b>Better Auth/Next.js issue: Clearing cache for protected routes after Sign In/Out.</b></summary>
 
 Usually this is fairly simple when running these methods purely on-server with libraries like Lucia which have better server-sided method documentation. However, Better Auth docs only recommends Sign In/Out methods using the client-side authClient function.
 
@@ -154,7 +163,7 @@ With this method, backrouting will flash the old URL in the bar prior to your mi
   })
 }>
 
-// server/actions.ts
+// /server/actions.ts
 export async function revalidateCache(route: string, mode?: "layout" | "page") {
   revalidatePath(route, mode ?? undefined);
 }
@@ -172,19 +181,13 @@ This version will not have a URL flash on backrouting attempts, but you lose con
   onClick={async () =>
     await authClient.signOut({
       fetchOptions: {
-        onSuccess: async () => {
+        onSuccess: () => {
         toast.success("Signed out successfully.");
-        await revalidateCache("/dashboard", "layout");
-        router.push("/");
+        router.refresh();
       },
     },
   })
 }>
-
-// server/actions.ts
-export async function revalidateCache(route: string, mode?: "layout" | "page") {
-  revalidatePath(route, mode ?? undefined);
-}
 ```
 
 ### 3. Avoid authClient usage entirely
@@ -194,9 +197,9 @@ Your third option is to avoid authClient. You can instead opt to set & delete co
 </details>
 
 <details>
-<summary>Better Auth issue: No callbackURL for Sign Out method.</summary>
+<summary><b>Better Auth issue: No callbackURL for Sign Out method.</b></summary>
 
-You could argue this is more of a nitpick, but the entire cache clearing setup could really just be run through a built-in callbackURL or redirectURL method on signOut. I can't really think of a situation where you wouldn't want to clear cache of a protected route to prevent backrouting, quite frankly it's something the developer shouldn't even have to think about with an auth library.
+You could argue this is more of a nitpick, but the entire cache clearing setup could really just be run through a built-in callbackURL or redirectURL method on signOut. I can't really think of a situation where you wouldn't want to clear cache of a protected route to prevent backrouting.
 
 </details>
 
