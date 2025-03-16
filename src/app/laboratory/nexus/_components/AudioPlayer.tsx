@@ -10,7 +10,6 @@ import { IconPause } from "../../_components/Icons";
  * - Override input[type="range"] appearance across all browsers (or make my own element)
  * - Add album image for Cyberpunk 2077 soundtrack
  * - Add track title scrolling
- * - Fit site header to navtrigger button height (match my vPulse changes)
  * - Find sharper control icons or make them myself
  */
 
