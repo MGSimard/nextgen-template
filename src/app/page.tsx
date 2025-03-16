@@ -108,7 +108,7 @@ export default function PageHome() {
 }
 
 const techStack = [
-  ["Next.js", "15.2.1-canary.5", "FullStack Environment", "https://nextjs.org/docs", "nextjs.org"],
+  ["Next.js", "15.3.0-canary.10", "FullStack Environment", "https://nextjs.org/docs", "nextjs.org"],
   ["React", "19.0.0", "Compiler Enabled", "https://react.dev", "react.dev"],
   ["TypeScript", "5.8.2", "Type Safety", "https://www.typescriptlang.org/docs", "typescriptlang.org"],
   ["Neon", "0.10.4", "Database", "https://neon.tech/docs/introduction", "neon.tech"],
