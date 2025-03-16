@@ -24,7 +24,7 @@ export function AudioPlayer() {
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
-  const initialVolume = 50;
+  const initialVolume = 25;
 
   useEffect(() => {
     console.log("Audio player mounted");
