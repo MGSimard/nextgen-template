@@ -73,25 +73,49 @@ Edge & Local First
 </ol>
 </details>
 
-<details><summary>Better Auth issue: Disabling user registration.</summary>
+<details><summary>Better Auth: Disabling user registration.</summary>
 
-_Note: There is currently a [PR open](https://github.com/better-auth/better-auth/pull/1428) to introduce a signupsDisabled flag. You would still be able to create users as an admin using authClient.admin -- and role granularity for admin actions could be achieved with [this additional PR](https://github.com/better-auth/better-auth/pull/1424)._
+~~Note: There is currently a [PR open](https://github.com/better-auth/better-auth/pull/1428) to introduce a signupsDisabled flag. You would still be able to create users as an admin using authClient.admin -- and role granularity for admin actions could be achieved with [this additional PR](https://github.com/better-auth/better-auth/pull/1424).~~
+
+**UPDATE: [Our PR got merged](https://github.com/better-auth/better-auth/pull/1428). You can now disable sign ups for any enabled social provider & emailAndPassword option by adding disableSignUp: true; to those individual options.** See below for more information.
 
 If you decide to use Email & Password you should know that your sign-up endpoint becomes publicly accessible by default, meaning anyone can create an account regardless of whether or not you give them an accessible, programmatic way to do so from within the application.
 
 - While emailAndPassword is enabled in your auth config, the `/api/sign-up/email` endpoint becomes accessible by default.
 - This means even if you offer no way for users to sign up in say, a private application, they can still create an account by hitting up your sign-up endpoint with a POST request to http://example.com/api/auth/sign-up/email with email/password/name in the request body.
+- _Edit (2025/03/16):_ I haven't looked it this behaviour for OAuth, but considering the new disableSignUp flag can be used in OAuth providers, I'd assume it's identical.
 
-In order to prevent this, should you choose to lock down registration, Better Auth does not currently have a betterAuth() flag to do this easily. Instead you have to intercept the API request with an auth middleware and reject their request. You can add the code below to your betterAuth config alongside database: {}, session: {}, etc:
+~~In order to prevent this, should you choose to lock down registration, Better Auth does not currently have a betterAuth() flag to do this easily. Instead you have to intercept the API request with an auth middleware and reject their request. You can add the code below to your betterAuth config alongside database: {}, session: {}, etc:~~
+
+**OBSOLETE METHOD**
 
 ```
-  hooks: {
-    before: createAuthMiddleware(async (ctx) => {
-      if (ctx.path.startsWith("/sign-up")) {
-        return NextResponse.json({ error: "ERROR: Registration disabled." }, { status: 401 });
-      }
-    }),
+// THIS METHOD IS NOW OBSOLETE
+hooks: {
+  before: createAuthMiddleware(async (ctx) => {
+    if (ctx.path.startsWith("/sign-up")) {
+      return NextResponse.json({ error: "ERROR: Registration disabled." }, { status: 401 });
+    }
+  }),
+},
+
+```
+
+**NEW METHOD**
+
+```
+// NEW METHOD -  Add disableSignUp flag - not necessary if provider isn't enabled.
+emailAndPassword: {
+  enabled: true,
+  disableSignUp: true,
+},
+socialProviders: {
+  google: {
+    disableSignUp: true,
+    clientId: process.env.GOOGLE_CLIENT_ID!,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
   },
+},
 ```
 
 Extra:
