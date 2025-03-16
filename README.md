@@ -258,6 +258,7 @@ For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
 
 ## TASK LIST
 
+- [ ] Go back to having fun in laboratory once I'm done with VertexPulse reskin
 - [ ] Deal with signout redirection not working if signing out when on a 404-type page
 - [ ] User settings page
 - [ ] Account/User deletion
