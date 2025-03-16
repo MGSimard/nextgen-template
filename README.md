@@ -71,26 +71,22 @@ Neon is best suited for its free tier due to slow performance and poor cold-star
 
 </details>
 
-<details><summary><b>Multi-project schema pattern from T3 has been disabled.</b></summary>
+<details><summary><b>Avoid the multi-project schema pattern</b></summary>
 
-1. Vercel's migration to Neon allows free tier users to have multiple Postgres databases.
-2. Recent Drizzle Kit versions have issues with multi-project schemas, <a href="https://github.com/drizzle-team/drizzle-orm/issues/3320#issuecomment-2461087002">including a bug where migrations may attempt to drop sequences</a>.
+- Vercel's migration to Neon allows free tier users to have multiple Postgres databases.
+- Recent Drizzle Kit versions have issues with multi-project schemas, including <a href="https://github.com/drizzle-team/drizzle-orm/issues/3320#issuecomment-2461087002">a bug where migrations may attempt to drop sequences</a>.
 
 ---
 
 </details>
 
-<details><summary><b>Better Auth: Disabling user registration.</b></summary>
+<details><summary><b>Better Auth: Disabling user registration</b></summary>
 
 ~~Note: There is currently a [PR open](https://github.com/better-auth/better-auth/pull/1428) to introduce a signupsDisabled flag. You would still be able to create users as an admin using authClient.admin -- and role granularity for admin actions could be achieved with [this additional PR](https://github.com/better-auth/better-auth/pull/1424).~~
 
-**Update:** Our [PR](https://github.com/better-auth/better-auth/pull/1428) to add a `disableSignUp` flag has been merged. You can now disable sign ups for any enabled social provider and the `emailAndPassword` option by setting `disableSignUp: true` on any of those individual options when used.
+**Update:** Our [PR](https://github.com/better-auth/better-auth/pull/1428) to add a `disableSignUp` flag has been merged. You can now cleanly disable sign ups for enabled social providers and the `emailAndPassword` options.
 
-**If you decide to use Email & Password you should know that your sign-up endpoint becomes publicly accessible by default**, meaning anyone can create an account regardless of whether or not you give them an accessible, programmatic way to do so from within the application.
-
-- While `emailAndPassword` is enabled in your auth config, the `/api/sign-up/email` endpoint becomes accessible by default.
-- This means even if you offer no way for users to sign up in say, a private application, they can still create an account by hitting up your sign-up endpoint with a `POST` request to `http://example.com/api/auth/sign-up/email` with email/password/name in the request body.
-- _Edit (2025/03/16):_ I haven't looked it this behaviour for OAuth, but considering the new `disableSignUp` flag can also be used in social providers, I'd assume it's similar.
+If you enable `enableAndPassword`, the `/api/sign-up/email` endpoint becomes publicly accessible. This allows anyone to create an account via a `POST` request even if your application doesn't offer an accessible, programmatic way to do so. The new `disableSignUp` allows you to disable sign ups for any enabled social provider and `emailAndPassword`.
 
 **New Method (BetterAuth &gt;=1.2):**
 
@@ -112,11 +108,12 @@ socialProviders: {
 
 **Obsolete Method (BetterAuth &lt;1.2):**
 
-Intercept the API request with an auth middleware and reject their request. You can add the code below to your betterAuth config alongside database: {}, session: {}, etc:
+Intercept the API request with an auth middleware and reject their request.
 
 ```
 // /server/auth/index.js
 // OLD METHOD - Obsolete for Better Auth >=1.2
+//
 hooks: {
   before: createAuthMiddleware(async (ctx) => {
     if (ctx.path.startsWith("/sign-up")) {
@@ -127,14 +124,14 @@ hooks: {
 
 ```
 
-**Extra:** When `emailAndPassword` isn't enabled, the `/sign-up/email` endpoint is still created. Though it does respond with an error stating that registration is disabled, I don't feel like it makes sense to include the endpoint to begin with if the feature itself is disabled entirely. A little bloat here and there stacks up to a lot of bloat down the line.
+**Extra:** Even when `emailAndPassword` is disabled, the `/sign-up/email` endpoint is still created. Though it responds with an error stating that registration is disabled, I don't feel it makes sense to include an endpoint if the feature is disabled entirely. Small amounts of bloat eventually adds up.
 
 ---
 
 </details>
 
 <details>
-<summary><b>Better Auth/Next.js issue: Clearing cache for protected routes after Sign In/Out.</b></summary>
+<summary><b>Better Auth/Next.js issue: Clearing cache for protected routes after Sign In/Out</b></summary>
 
 Usually this is fairly simple when running these methods purely on-server with libraries like Lucia which have better server-sided method documentation. However, Better Auth docs only recommends Sign In/Out methods using the client-side authClient function.
 
