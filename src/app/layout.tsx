@@ -7,6 +7,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { siteMetadata } from "@/utils/siteMetadata";
 import "@/styles/globals.css";
+import { ReactScan } from "@/components/ReactScan";
 
 const geistSans = Geist({ subsets: ["latin"], display: "swap" });
 const geistMono = Geist_Mono({ variable: "--GeistMono", subsets: ["latin"], display: "swap" });
@@ -22,6 +23,7 @@ export const metadata: Metadata = siteMetadata;
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${geistSans.className} ${geistMono.variable}`}>
+      <ReactScan />
       <body>
         <ThemeProvider disableTransitionOnChange defaultTheme="system" enableSystem>
           <Toaster richColors toastOptions={{ className: "sonner-card" }} />
