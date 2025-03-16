@@ -13,8 +13,7 @@ import { IconPause } from "../../_components/Icons";
 
 const toLogarithmicVolume = (value: number) => {
   const logarithmicVolume = (Math.pow(10, value / 100) - 1) / 9;
-  const clampedOutput = Math.min(Math.max(logarithmicVolume, 0), 1);
-  return clampedOutput;
+  return Math.min(Math.max(logarithmicVolume, 0), 1);
 };
 
 export function AudioPlayer() {
@@ -59,17 +58,9 @@ export function AudioPlayer() {
       setIsLoading(false);
     };
 
-    const handlePlay = () => {
-      setIsPlaying(true);
-    };
-
-    const handlePause = () => {
-      setIsPlaying(false);
-    };
-
-    const handleEnded = () => {
-      handleNextTrack();
-    };
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
+    const handleEnded = () => handleNextTrack();
 
     const handleError = () => {
       audioPlayer.pause();
@@ -132,9 +123,7 @@ export function AudioPlayer() {
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer) return;
     if (audioPlayer.paused || audioPlayer.ended) {
-      if (audioPlayer.error) {
-        audioPlayer.load();
-      }
+      if (audioPlayer.error) audioPlayer.load();
       audioPlayer.play().catch((err) => console.error("Error playing:", err));
     } else {
       audioPlayer.pause();
@@ -151,8 +140,7 @@ export function AudioPlayer() {
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer || duration <= 0) return;
-    const percentage = Number(e.target.value) / 100;
-    const time = duration * percentage;
+    const time = duration * (Number(e.target.value) / 100);
     audioPlayer.currentTime = time;
     setCurrentTime(time);
   };
@@ -169,8 +157,7 @@ export function AudioPlayer() {
   const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer) return;
-    const logarithmicVolume = toLogarithmicVolume(Number(e.target.value));
-    audioPlayer.volume = logarithmicVolume;
+    audioPlayer.volume = toLogarithmicVolume(Number(e.target.value));
   };
 
   const updateSeeker = (time: number, limit: number) => {
@@ -181,9 +168,7 @@ export function AudioPlayer() {
   };
 
   const formatTime = (seconds: number) => {
-    if (!isFinite(seconds) || seconds === 0) {
-      return "--:--:--";
-    }
+    if (!isFinite(seconds) || seconds === 0) return "--:--:--";
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const remainingSeconds = Math.floor(seconds % 60);
