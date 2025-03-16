@@ -23,6 +23,7 @@ export function AudioPlayer() {
   const [currentTime, setCurrentTime] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [wasPlayingBeforeSeek, setWasPlayingBeforeSeek] = useState(false);
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
   const initialVolume = 25;
 
@@ -140,6 +141,13 @@ export function AudioPlayer() {
     }
   };
 
+  const handleSeekStart = () => {
+    const audioPlayer = audioPlayerRef.current;
+    if (!audioPlayer || duration <= 0) return;
+    setWasPlayingBeforeSeek(isPlaying);
+    if (isPlaying) audioPlayer.pause();
+  };
+
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer || duration <= 0) return;
@@ -147,6 +155,15 @@ export function AudioPlayer() {
     const time = duration * percentage;
     audioPlayer.currentTime = time;
     setCurrentTime(time);
+  };
+
+  const handleSeekEnd = () => {
+    const audioPlayer = audioPlayerRef.current;
+    if (!audioPlayer || duration <= 0) return;
+    if (wasPlayingBeforeSeek) {
+      audioPlayer.play().catch((err) => console.error("Error resuming after seek:", err));
+      setIsPlaying(true);
+    }
   };
 
   const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -217,6 +234,8 @@ export function AudioPlayer() {
           max="100"
           value={duration > 0 ? updateSeeker(currentTime, duration) : 0}
           onChange={handleSeek}
+          onPointerDown={handleSeekStart}
+          onPointerUp={handleSeekEnd}
           disabled={duration <= 0 || isLoading}
           aria-label="Seek"
         />
