@@ -22,13 +22,13 @@ Its main purpose is for quickstarting my own personal projects with a bleeding e
 | PostgreSQL  | 3.4.5           | Database Management   | [postgresql.org](https://www.postgresql.org/docs/)                               |
 | Drizzle     | 0.40.0          | ORM                   | [orm.drizzle.team](https://orm.drizzle.team/docs/overview)                       |
 | Drizzle Kit | 0.30.5          | Database Migration    | [orm.drizzle.team](https://orm.drizzle.team/docs/kit-overview)                   |
-| Better Auth | 1.2.1           | Authentication        | [better-auth.com](https://www.better-auth.com/docs/introduction)                 |
+| Better Auth | 1.2.4           | Authentication        | [better-auth.com](https://www.better-auth.com/docs/introduction)                 |
 | Zod         | 3.24.2          | Validation            | [zod.dev](https://zod.dev/)                                                      |
-| ESLint      | 9.21.0          | Flat Config           | [eslint.org](https://eslint.org/docs/latest/)                                    |
+| ESLint      | 9.22.0          | Flat Config           | [eslint.org](https://eslint.org/docs/latest/)                                    |
 | t3-oss/env  | 0.12.0          | .env Type Safety      | [create.t3.gg](https://create.t3.gg/en/usage/env-variables)                      |
-| pnpm        | 10.4.1          | Package Manager       | [pnpm.io](https://pnpm.io/motivation)                                            |
+| pnpm        | 10.6.3          | Package Manager       | [pnpm.io](https://pnpm.io/motivation)                                            |
 | Vercel      | -               | Hosting               | [vercel.com](https://vercel.com/docs)                                            |
-| next-themes | 0.4.4           | Theme Toggling        | [github.com/pacocoursey/next-themes](https://github.com/pacocoursey/next-themes) |
+| next-themes | 0.4.6           | Theme Toggling        | [github.com/pacocoursey/next-themes](https://github.com/pacocoursey/next-themes) |
 | Sonner      | 2.0.1           | UI Notifications      | [sonner.emilkowal.ski](https://sonner.emilkowal.ski/getting-started)             |
 
 </td></tr> </table>
