@@ -3,7 +3,7 @@
   --sitePadding: 2rem;
   --navWidth: 6rem;
   --navPadding: 1rem;
-  --headerHeight: 12rem;
+  --headerHeight: 8rem;
 }
 :root[data-theme="dark"] {
   --clrPrimary: hsl(0, 95%, 62%); /* Imperial Red */
@@ -60,15 +60,23 @@ footer {
   max-width: var(--siteMaxWidth);
   width: 100%;
 }
-header,
+header {
+  flex-shrink: 0;
+  padding: calc(var(--sitePadding) + 0.4rem) 0 4rem 0;
+}
+header:not(.hero) h1 {
+  line-height: 1;
+}
 footer {
   flex-shrink: 0;
-  padding: 4rem 0;
-}
-header {
   display: flex;
+  justify-content: center;
   align-items: center;
-  min-height: var(--headerHeight);
+  min-height: 10rem;
+  padding: 4rem 0;
+  color: var(--clrDetail);
+  font-weight: 100;
+  text-align: center;
 }
 main {
   flex-grow: 1;
@@ -79,15 +87,7 @@ section:not([aria-label="Notifications alt+T"]) /* Avoids Sonner's section */ {
 section > *:not(:last-child) {
   margin-bottom: 2ch;
 }
-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 10rem;
-  color: var(--clrDetail);
-  font-weight: 100;
-  text-align: center;
-}
+
 /* DEFAULTS */
 h1,
 h2,
