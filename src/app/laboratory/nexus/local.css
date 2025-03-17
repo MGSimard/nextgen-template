@@ -196,8 +196,7 @@ main:has(#proto-nexus) {
   width: 1.4em;
   height: 1.4em;
 }
-#pnm .pnm-range-wrapper {
-  width: 100%;
+.pnm-range-wrapper {
   cursor: pointer;
   -webkit-touch-callout: none;
   -webkit-user-select: none;

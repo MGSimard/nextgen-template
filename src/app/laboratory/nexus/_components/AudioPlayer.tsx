@@ -185,6 +185,7 @@ export function AudioPlayer() {
     if (!volumeBar) return;
     volumeBar.setPointerCapture(e.pointerId);
     setIsDragging(true);
+    updateVolumePosition(e);
   };
 
   const handleVolumeMove = (e: React.PointerEvent<HTMLDivElement>) => {
