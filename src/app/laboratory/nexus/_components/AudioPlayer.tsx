@@ -6,7 +6,6 @@ import { IconPrevious, IconNext, IconPlay, IconPause } from "../../_components/I
  * - RESPONSIVE
  * - Add album image for Cyberpunk 2077 soundtrack
  * - Add track title scrolling
- * - Find sharper control icons or make them myself
  */
 
 const toLogarithmicVolume = (value: number) => {
