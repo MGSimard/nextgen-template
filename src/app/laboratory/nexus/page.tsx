@@ -41,47 +41,40 @@ export default function PageNexus() {
       </header>
       <main>
         <section id="proto-nexus">
-          <div id="proto-nexus-left">
-            <div id="proto-nexus-time">
-              <div id="pnt-clock">
-                <IconClock />
-              </div>
-              <div id="pnt-numbers">
-                06:30<span>PM</span>
-              </div>
+          <div id="proto-nexus-time">
+            <div id="pnt-clock">
+              <IconClock />
             </div>
-
-            <div id="proto-nexus-buttons">
-              {buttons.map((button) => (
-                <button type="button" key={button.label}>
-                  {/* NEED NEW SHARPER BUTTON ICONS */}
-                  {button.icon}
-                </button>
-              ))}
+            <div id="pnt-numbers">
+              06:30<span>PM</span>
             </div>
-
-            <ul id="proto-nexus-weather">
-              {weather.map((item) => (
-                <li key={item.quarter} className="pnw-item">
-                  <span className="pnw-label">{item.quarter}</span>
-                  <div className="pnw-temp">
-                    {item.icon}
-                    <span>{item.temp}°</span>
-                  </div>
-                  <div className="pnw-rain">
-                    <IconRain aria-label="Chance of rain" />
-                    <span>{item.rain}%</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-
-            <AudioPlayer />
           </div>
-          <div id="proto-nexus-right">
-            <div id="proto-nexus-thing1"></div>
-            <div id="proto-nexus-thing2"></div>
+
+          <div id="proto-nexus-buttons">
+            {buttons.map((button) => (
+              <button type="button" key={button.label}>
+                {/* NEED NEW SHARPER BUTTON ICONS */}
+                {button.icon}
+              </button>
+            ))}
           </div>
+
+          <ul id="proto-nexus-weather">
+            {weather.map((item) => (
+              <li key={item.quarter} className="pnw-item">
+                <span className="pnw-label">{item.quarter}</span>
+                <div className="pnw-temp">
+                  {item.icon}
+                  <span>{item.temp}°</span>
+                </div>
+                <div className="pnw-rain">
+                  <IconRain aria-label="Chance of rain" />
+                  <span>{item.rain}%</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <AudioPlayer />
         </section>
       </main>
     </>
