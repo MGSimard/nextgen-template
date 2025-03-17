@@ -113,7 +113,7 @@ const techStack = [
   ["TypeScript", "5.8.2", "Type Safety", "https://www.typescriptlang.org/docs", "typescriptlang.org"],
   ["Neon", "0.10.4", "Database", "https://neon.tech/docs/introduction", "neon.tech"],
   ["PostgreSQL", "3.4.5", "Database Management", "https://www.postgresql.org/docs", "postgresql.org"],
-  ["Drizzle", "0.40.0", "ORM", "https://orm.drizzle.team/docs/overview", "orm.drizzle.team"],
+  ["Drizzle", "0.40.1", "ORM", "https://orm.drizzle.team/docs/overview", "orm.drizzle.team"],
   ["Drizzle Kit", "0.30.5", "Database Migration", "https://orm.drizzle.team/docs/kit-overview", "orm.drizzle.team"],
   ["Better Auth", "1.2.4", "Authentication", "https://www.better-auth.com/docs/introduction", "better-auth.com"],
   ["Zod", "3.24.2", "Validation", "https://zod.dev", "zod.dev"],
