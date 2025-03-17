@@ -37,6 +37,11 @@ export function AudioPlayer() {
     if (!audioPlayer) return;
 
     audioPlayer.volume = toLogarithmicVolume(initialVolume);
+  }, [audioPlayerRef]);
+
+  useEffect(() => {
+    const audioPlayer = audioPlayerRef.current;
+    if (!audioPlayer) return;
 
     const updateDuration = () => {
       setDuration(audioPlayer.duration);
@@ -203,6 +208,7 @@ export function AudioPlayer() {
               <IconForward aria-label="Next" />
             </button>
             <input
+              id="pnm-volume"
               type="range"
               min="0"
               max="100"
