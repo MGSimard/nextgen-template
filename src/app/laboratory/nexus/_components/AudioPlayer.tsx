@@ -4,6 +4,7 @@ import { IconForward, IconBackward, IconPlay } from "../../_components/Icons";
 import { IconPause } from "../../_components/Icons";
 
 /** TASK LIST
+ * - RESPONSIVE
  * - Swap to a vertical popover volume control
  * - Add album image for Cyberpunk 2077 soundtrack
  * - Add track title scrolling
@@ -180,18 +181,18 @@ export function AudioPlayer() {
     setCurrentTime(newTime);
   };
 
-  // Now we do for volume the same thing we did for seek bar
-
   const handleVolumeStart = (e: React.PointerEvent<HTMLDivElement>) => {
     const volumeBar = volumeRef.current;
     if (!volumeBar) return;
     volumeBar.setPointerCapture(e.pointerId);
     setIsDragging(true);
   };
+
   const handleVolumeMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!isDragging) return;
     updateVolumePosition(e);
   };
+
   const handleVolumeEnd = (e: React.PointerEvent<HTMLDivElement>) => {
     const volumeBar = volumeRef.current;
     if (!volumeBar || !isDragging) return;
