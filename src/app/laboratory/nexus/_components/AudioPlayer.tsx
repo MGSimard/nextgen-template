@@ -5,7 +5,6 @@ import { IconPause } from "../../_components/Icons";
 
 /** TASK LIST
  * - Swap to a vertical popover volume control
- * - Override input[type="range"] appearance across all browsers (or make my own element)
  * - Add album image for Cyberpunk 2077 soundtrack
  * - Add track title scrolling
  * - Find sharper control icons or make them myself
@@ -16,6 +15,16 @@ const toLogarithmicVolume = (value: number) => {
   return Math.min(Math.max(logarithmicVolume, 0), 1);
 };
 
+const formatTime = (seconds: number) => {
+  if (!isFinite(seconds) || seconds === 0) return "--:--:--";
+  const hours = Math.floor(seconds / 3600);
+  const minutes = Math.floor((seconds % 3600) / 60);
+  const remainingSeconds = Math.floor(seconds % 60);
+  return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${remainingSeconds
+    .toString()
+    .padStart(2, "0")}`;
+};
+
 export function AudioPlayer() {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -23,6 +32,8 @@ export function AudioPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [wasPlayingBeforeSeek, setWasPlayingBeforeSeek] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const seekerRef = useRef<HTMLDivElement>(null);
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
   const initialVolume = 25;
 
@@ -35,13 +46,14 @@ export function AudioPlayer() {
   useEffect(() => {
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer) return;
-
     audioPlayer.volume = toLogarithmicVolume(initialVolume);
   }, [audioPlayerRef]);
 
   useEffect(() => {
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer) return;
+    const controller = new AbortController();
+    const signal = controller.signal;
 
     const updateDuration = () => {
       setDuration(audioPlayer.duration);
@@ -78,24 +90,28 @@ export function AudioPlayer() {
       setIsLoading(false);
     }
 
-    audioPlayer.addEventListener("loadedmetadata", updateDuration);
-    audioPlayer.addEventListener("timeupdate", updateCurrentTime);
-    audioPlayer.addEventListener("canplay", handleCanPlay);
-    audioPlayer.addEventListener("play", handlePlay);
-    audioPlayer.addEventListener("pause", handlePause);
-    audioPlayer.addEventListener("ended", handleEnded);
-    audioPlayer.addEventListener("error", handleError);
+    audioPlayer.addEventListener("loadedmetadata", updateDuration, { signal });
+    audioPlayer.addEventListener("timeupdate", updateCurrentTime, { signal });
+    audioPlayer.addEventListener("canplay", handleCanPlay, { signal });
+    audioPlayer.addEventListener("play", handlePlay, { signal });
+    audioPlayer.addEventListener("pause", handlePause, { signal });
+    audioPlayer.addEventListener("ended", handleEnded, { signal });
+    audioPlayer.addEventListener("error", handleError, { signal });
 
     return () => {
-      audioPlayer.removeEventListener("loadedmetadata", updateDuration);
-      audioPlayer.removeEventListener("timeupdate", updateCurrentTime);
-      audioPlayer.removeEventListener("canplay", handleCanPlay);
-      audioPlayer.removeEventListener("play", handlePlay);
-      audioPlayer.removeEventListener("pause", handlePause);
-      audioPlayer.removeEventListener("ended", handleEnded);
-      audioPlayer.removeEventListener("error", handleError);
+      controller.abort();
     };
   }, [currentTrack, duration]);
+
+  const handlePreviousTrack = () => {
+    const prevTrack = (currentTrack - 1 + trackSrcs.length) % trackSrcs.length;
+    changeTrack(prevTrack);
+  };
+
+  const handleNextTrack = () => {
+    const nextTrack = (currentTrack + 1) % trackSrcs.length;
+    changeTrack(nextTrack);
+  };
 
   const changeTrack = (newTrackIndex: number) => {
     const audioPlayer = audioPlayerRef.current;
@@ -108,20 +124,9 @@ export function AudioPlayer() {
     setTimeout(() => {
       audioPlayer.load();
       audioPlayer.play().catch((err) => {
-        console.error("Error playing track:", err);
         setIsLoading(false);
       });
     }, 0);
-  };
-
-  const handleNextTrack = () => {
-    const nextTrack = (currentTrack + 1) % trackSrcs.length;
-    changeTrack(nextTrack);
-  };
-
-  const handlePreviousTrack = () => {
-    const prevTrack = (currentTrack - 1 + trackSrcs.length) % trackSrcs.length;
-    changeTrack(prevTrack);
   };
 
   const handlePlayPause = () => {
@@ -135,51 +140,47 @@ export function AudioPlayer() {
     }
   };
 
-  const handleSeekStart = () => {
-    const audioPlayer = audioPlayerRef.current;
-    if (!audioPlayer || duration <= 0) return;
+  const handleSeekStart = (e: React.PointerEvent<HTMLDivElement>) => {
+    const seekBar = seekerRef.current;
+    if (!seekBar) return;
+    seekBar.setPointerCapture(e.pointerId);
+    setIsDragging(true);
     setWasPlayingBeforeSeek(isPlaying);
-    if (isPlaying) audioPlayer.pause();
+    if (isPlaying) audioPlayerRef.current?.pause();
+    updateSeekPosition(e);
   };
 
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const audioPlayer = audioPlayerRef.current;
-    if (!audioPlayer || duration <= 0) return;
-    const time = duration * (Number(e.target.value) / 100);
-    audioPlayer.currentTime = time;
-    setCurrentTime(time);
+  const handleSeeking = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    updateSeekPosition(e);
   };
 
-  const handleSeekEnd = () => {
-    const audioPlayer = audioPlayerRef.current;
-    if (!audioPlayer || duration <= 0) return;
+  const handleSeekEnd = (e: React.PointerEvent<HTMLDivElement>) => {
+    const seekBar = seekerRef.current;
+    if (!seekBar || !isDragging) return;
+    seekBar.releasePointerCapture(e.pointerId);
+    setIsDragging(false);
     if (wasPlayingBeforeSeek) {
-      audioPlayer.play().catch((err) => console.error("Error resuming after seek:", err));
+      audioPlayerRef.current?.play().catch((err) => console.error("Error resuming:", err));
       setIsPlaying(true);
     }
+  };
+
+  const updateSeekPosition = (e: React.PointerEvent<HTMLDivElement>) => {
+    const seekBar = seekerRef.current;
+    const audio = audioPlayerRef.current;
+    if (!seekBar || !audio || duration <= 0) return;
+    const rect = seekBar.getBoundingClientRect();
+    const position = Math.max(0, Math.min((e.clientX - rect.left) / rect.width, 1));
+    const newTime = position * duration;
+    audio.currentTime = newTime;
+    setCurrentTime(newTime);
   };
 
   const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
     const audioPlayer = audioPlayerRef.current;
     if (!audioPlayer) return;
     audioPlayer.volume = toLogarithmicVolume(Number(e.target.value));
-  };
-
-  const updateSeeker = (time: number, limit: number) => {
-    if (isFinite(time) && isFinite(limit) && limit > 0) {
-      return ((time / limit) * 100).toFixed(2);
-    }
-    return "0";
-  };
-
-  const formatTime = (seconds: number) => {
-    if (!isFinite(seconds) || seconds === 0) return "--:--:--";
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const remainingSeconds = Math.floor(seconds % 60);
-    return `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${remainingSeconds
-      .toString()
-      .padStart(2, "0")}`;
   };
 
   return (
@@ -215,21 +216,24 @@ export function AudioPlayer() {
               defaultValue={initialVolume}
               onChange={handleVolume}
               aria-label="Volume"
+              step="any"
             />
           </div>
         </div>
-        <input
-          id="pnm-seeker"
-          type="range"
-          min="0"
-          max="100"
-          value={duration > 0 ? updateSeeker(currentTime, duration) : 0}
-          onChange={handleSeek}
-          onPointerDown={handleSeekStart}
-          onPointerUp={handleSeekEnd}
-          disabled={duration <= 0 || isLoading}
+        <div
+          ref={seekerRef}
+          className="pnm-range-wrapper"
           aria-label="Seek"
-        />
+          onPointerDown={handleSeekStart}
+          onPointerMove={handleSeeking}
+          onPointerUp={handleSeekEnd}
+          onPointerCancel={handleSeekEnd}>
+          <div className="pnm-range-track">
+            <div className="pnm-range-progress" style={{ width: `${(currentTime / duration) * 100}%` }}></div>
+            <div className="pnm-range-thumb" style={{ left: `${(currentTime / duration) * 100}%` }}></div>
+          </div>
+        </div>
+        <div></div>
       </div>
     </div>
   );
