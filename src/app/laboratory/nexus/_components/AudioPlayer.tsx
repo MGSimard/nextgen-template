@@ -4,6 +4,8 @@ import { IconPrevious, IconNext, IconPlay, IconPause } from "../../_components/I
 
 /** TASK LIST
  * - RESPONSIVE
+ * - Audio control is hard to tap
+ * - Prevent scrolling while dragging a control on mobile
  * - Add album image for Cyberpunk 2077 soundtrack
  * - Add track title scrolling
  */
