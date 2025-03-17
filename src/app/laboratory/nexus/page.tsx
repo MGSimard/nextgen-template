@@ -1,6 +1,5 @@
 import "./local.css";
 import {
-  IconClock,
   IconGlobe,
   IconKey,
   IconPartlyCloudy,
@@ -10,6 +9,7 @@ import {
   IconBattery,
 } from "../_components/Icons";
 import { AudioPlayer } from "./_components/AudioPlayer";
+import { Clock } from "./_components/Clock";
 
 export default function PageNexus() {
   const buttons = [
@@ -41,14 +41,7 @@ export default function PageNexus() {
       </header>
       <main>
         <section id="proto-nexus">
-          <div id="proto-nexus-time">
-            <div id="pnt-clock">
-              <IconClock />
-            </div>
-            <div id="pnt-numbers">
-              06:30<span>PM</span>
-            </div>
-          </div>
+          <Clock />
 
           <div id="proto-nexus-buttons">
             {buttons.map((button) => (

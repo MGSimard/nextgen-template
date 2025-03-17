@@ -1,9 +1,9 @@
-#proto-nexus {
+/* #proto-nexus {
   border: 1px solid red;
 }
 #proto-nexus * {
   border: 1px solid rgba(0, 225, 255, 0.42);
-}
+} */
 /* CONTAINER */
 #proto-nexus {
   flex-grow: 1;
@@ -16,6 +16,7 @@
 
 /* CLOCK */
 #pnt-clock {
+  position: relative;
   width: 12rem;
   height: 12rem;
   border-radius: 999rem;
@@ -24,6 +25,23 @@
   display: block;
   width: 100%;
   height: 100%;
+}
+#pnt-hour-hand,
+#pnt-minute-hand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: var(--clrText);
+  transform-origin: left center;
+  clip-path: polygon(20% 50%, 100% 100%, 100% 0);
+}
+#pnt-hour-hand {
+  width: 35%;
+  height: 3px;
+}
+#pnt-minute-hand {
+  width: 45%;
+  height: 2px;
 }
 #pnt-numbers {
   font-weight: 500;
