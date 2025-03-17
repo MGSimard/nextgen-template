@@ -23,7 +23,7 @@ export const metadata: Metadata = siteMetadata;
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" suppressHydrationWarning className={`${geistSans.className} ${geistMono.variable}`}>
-      <ReactScan />
+      {/* <ReactScan /> */}
       <body>
         <ThemeProvider disableTransitionOnChange defaultTheme="system" enableSystem>
           <Toaster richColors toastOptions={{ className: "sonner-card" }} />

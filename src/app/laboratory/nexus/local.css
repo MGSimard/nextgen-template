@@ -58,18 +58,17 @@
 }
 /* WEATHER */
 #proto-nexus-weather {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5vw;
 }
 .pnw-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  width: 8rem;
   overflow: hidden;
 }
 .pnw-item span {
@@ -121,6 +120,7 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+  padding: 0.5rem 0;
 }
 #pnm-title {
   flex-grow: 1;

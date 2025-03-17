@@ -214,10 +214,7 @@ export function AudioPlayer() {
       <audio ref={audioPlayerRef} id="pnm-player" preload="metadata">
         {trackSrcs[currentTrack] ? <source src={trackSrcs[currentTrack]?.src} type="audio/mp3" /> : null}
       </audio>
-      <img
-        alt="Cover"
-        src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
-      />
+      <img alt="Cover" src="/assets/phantom_liberty.webp" />
       <div id="pnm-right">
         <div id="pnm-head">
           <span id="pnm-title">{trackSrcs[currentTrack]?.trackName ?? "-"}</span>
