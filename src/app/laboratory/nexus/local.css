@@ -121,17 +121,20 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  align-items: center;
   gap: 2rem;
   row-gap: 0.5rem;
 }
 #pnm-title {
-  max-width: 20rem;
+  flex-grow: 1;
+  width: 30rem;
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 #pnm-group {
+  flex-shrink: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -142,9 +145,13 @@
   font-family: var(--GeistMono);
 }
 #pnm-controls {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+#pnm-controls > * {
+  flex-shrink: 0;
 }
 #pnm-controls button {
   background: none;
