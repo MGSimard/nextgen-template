@@ -36,6 +36,7 @@ export default function PageNexus() {
             <a className="link" href="https://www.behance.net/gallery/118663901/Cyberpunk-2077User-Interface-(Part-1)">
               Cyberpunk 2077
             </a>{" "}
+            (Firefox gradient rendering lmao){" "}
           </span>
         </h1>
       </header>

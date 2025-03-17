@@ -5,6 +5,13 @@
   border: 1px solid rgba(0, 225, 255, 0.42);
 } */
 /* These lab experiments aren't made for this site's conventions so need to run an unset */
+body {
+  background: radial-gradient(
+    circle at top center,
+    color-mix(in srgb, hsla(from var(--clrText) h s l) 5%, transparent) 0%,
+    transparent 70%
+  );
+}
 section > :not(:last-child) {
   margin-bottom: 0;
 }

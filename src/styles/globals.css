@@ -64,7 +64,7 @@ header {
   flex-shrink: 0;
   padding: calc(var(--sitePadding) + 0.4rem) 0 4rem 0;
 }
-header:not(.hero) h1 {
+header h1 {
   line-height: 1;
 }
 footer {
@@ -227,13 +227,8 @@ details ul,
 details ol {
   padding-left: 1rem;
 }
-#proto-h1 {
-  position: relative;
-}
 #proto-h1 span {
-  position: absolute;
-  left: 0;
-  bottom: -1rem;
+  display: block;
   font-size: 1.2rem;
   color: var(--clrDetail);
 }
