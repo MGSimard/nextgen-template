@@ -6,14 +6,14 @@ function formatTime(date: Date): string {
   const hours = date.getHours();
   const minutes = date.getMinutes();
   const displayHours = hours % 12 || 12;
-  const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
-  return `${displayHours}:${displayMinutes}`;
+  const displayMinutesFormatted = String(minutes).padStart(2, "0");
+  return `${displayHours}:${displayMinutesFormatted}`;
 }
 
 export function Clock() {
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
-  const formattedTime = currentTime ? formatTime(currentTime) : "";
-  const ampm = currentTime ? (currentTime.getHours() >= 12 ? "PM" : "AM") : "";
+  const formattedTime = currentTime ? formatTime(currentTime) : "--:--";
+  const ampm = currentTime ? (currentTime.getHours() >= 12 ? "PM" : "AM") : "--";
   const minuteHandRotation = currentTime ? currentTime.getMinutes() * 6 - 90 : -90;
   const hourHandRotation = currentTime ? (currentTime.getHours() % 12) * 30 + currentTime.getMinutes() * 0.5 - 90 : -90;
 

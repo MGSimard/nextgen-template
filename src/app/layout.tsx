@@ -26,7 +26,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       lang="en"
       suppressHydrationWarning
       className={`${geistSans.className} ${geistSans.variable} ${geistMono.variable}`}>
-      {/* <ReactScan /> */}
+      <ReactScan />
       <body>
         <ThemeProvider disableTransitionOnChange defaultTheme="system" enableSystem>
           <Toaster richColors toastOptions={{ className: "sonner-card" }} />
