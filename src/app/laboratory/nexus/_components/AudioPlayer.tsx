@@ -1,11 +1,9 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { IconForward, IconBackward, IconPlay } from "../../_components/Icons";
-import { IconPause } from "../../_components/Icons";
+import { IconPrevious, IconNext, IconPlay, IconPause } from "../../_components/Icons";
 
 /** TASK LIST
  * - RESPONSIVE
- * - Swap to a vertical popover volume control
  * - Add album image for Cyberpunk 2077 soundtrack
  * - Add track title scrolling
  * - Find sharper control icons or make them myself
@@ -220,39 +218,43 @@ export function AudioPlayer() {
         alt="Cover"
         src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
       />
-      <div id="pnm-meta">
+      <div id="pnm-right">
         <div id="pnm-head">
           <span id="pnm-title">{trackSrcs[currentTrack]?.trackName ?? "-"}</span>
-          <div id="pnm-controls">
+          <div id="pnm-group">
             <span id="pnm-time">
               {formatTime(currentTime)}/{isLoading ? "--:--:--" : formatTime(duration)}
             </span>
-            <button type="button" onClick={handlePreviousTrack} disabled={isLoading}>
-              <IconBackward aria-label="Previous" />
-            </button>
-            <button type="button" onClick={handlePlayPause} disabled={isLoading}>
-              {isPlaying ? <IconPause aria-label="Pause" /> : <IconPlay aria-label="Play" />}
-            </button>
-            <button type="button" onClick={handleNextTrack} disabled={isLoading}>
-              <IconForward aria-label="Next" />
-            </button>
-            <div
-              ref={volumeRef}
-              className="pnm-range-wrapper volume"
-              aria-label="Volume"
-              onPointerDown={handleVolumeStart}
-              onPointerMove={handleVolumeMove}
-              onPointerUp={handleVolumeEnd}
-              onPointerCancel={handleVolumeEnd}>
-              <div className="pnm-range-track">
-                <div className="pnm-range-thumb" style={{ left: `${volume}%` }}></div>
+            <div id="pnm-controls">
+              <button className="pnm-prevnext" type="button" onClick={handlePreviousTrack} disabled={isLoading}>
+                <IconPrevious aria-label="Previous" />
+              </button>
+              <button id="pnm-playpause" type="button" onClick={handlePlayPause} disabled={isLoading}>
+                {isPlaying ? <IconPause aria-label="Pause" /> : <IconPlay aria-label="Play" />}
+              </button>
+              <button className="pnm-prevnext" type="button" onClick={handleNextTrack} disabled={isLoading}>
+                <IconNext aria-label="Next" />
+              </button>
+              <div
+                ref={volumeRef}
+                id="pnm-volume"
+                className="pnm-range-wrapper"
+                aria-label="Volume"
+                onPointerDown={handleVolumeStart}
+                onPointerMove={handleVolumeMove}
+                onPointerUp={handleVolumeEnd}
+                onPointerCancel={handleVolumeEnd}>
+                <div className="pnm-range-track">
+                  <div className="pnm-range-thumb" style={{ left: `${volume}%` }}></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div
           ref={seekerRef}
-          className="pnm-range-wrapper seek"
+          id="pnm-seek"
+          className="pnm-range-wrapper"
           aria-label="Seek"
           onPointerDown={handleSeekStart}
           onPointerMove={handleSeeking}

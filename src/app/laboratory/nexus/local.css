@@ -97,7 +97,7 @@
   padding: 0.5rem;
   font-size: 0.8em;
   background: var(--clrBgLight);
-  /* overflow: hidden; TODO REINSTATE */
+  overflow: hidden;
 }
 #proto-nexus-music img {
   flex-shrink: 0;
@@ -109,50 +109,55 @@
 #pnm-player {
   display: none !important;
 }
-#pnm-meta {
+#pnm-right {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 1rem;
+  overflow: hidden;
 }
 #pnm-head {
   display: flex;
-  align-items: center;
   flex-wrap: wrap;
+  justify-content: space-between;
   gap: 2rem;
   row-gap: 0.5rem;
 }
 #pnm-title {
-  flex-grow: 1;
-  flex-shrink: 0;
-  min-width: 20rem;
+  max-width: 20rem;
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
-#pnm-controls {
-  flex-shrink: 0;
+#pnm-group {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
 }
 #pnm-time {
   font-family: var(--GeistMono);
 }
-#pnm-controls input {
-  width: 12rem;
+#pnm-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
-#pnm-controls > button {
+#pnm-controls button {
   background: none;
 }
-#pnm-controls > button svg {
-  width: 1.5em;
-  height: 1.5em;
+.pnm-prevnext svg {
+  width: 1.2em;
+  height: 1.2em;
 }
-/* NEW SEEKER*/
-.pnm-range-wrapper {
+#pnm-playpause svg {
+  width: 1.4em;
+  height: 1.4em;
+}
+#pnm .pnm-range-wrapper {
   width: 100%;
   cursor: pointer;
   -webkit-touch-callout: none;
@@ -176,12 +181,6 @@
   position: absolute;
   inset: 0;
 }
-.volume .pnm-range-track::before {
-  inset: -0.5rem 0;
-}
-.seek .pnm-range-track::before {
-  top: -0.5rem;
-}
 .pnm-range-progress {
   position: absolute;
   bottom: 0;
@@ -200,7 +199,12 @@
   height: 1.5rem;
   background: var(--clrText);
 }
-.volume {
-  flex-grow: 1;
+#pnm-volume {
   width: 10rem;
+}
+#pnm-volume .pnm-range-track::before {
+  inset: -0.5rem 0;
+}
+#pnm-seek .pnm-range-track::before {
+  top: -0.5rem;
 }
