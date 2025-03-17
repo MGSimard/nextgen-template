@@ -97,6 +97,7 @@
   padding: 0.5rem;
   font-size: 0.8em;
   background: var(--clrBgLight);
+  /* overflow: hidden; TODO REINSTATE */
 }
 #proto-nexus-music img {
   flex-shrink: 0;
@@ -112,6 +113,7 @@
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   gap: 1rem;
 }
 #pnm-head {
@@ -122,8 +124,9 @@
   row-gap: 0.5rem;
 }
 #pnm-title {
-  flex-grow: 2;
-  width: 20rem;
+  flex-grow: 1;
+  flex-shrink: 0;
+  min-width: 20rem;
   text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -152,7 +155,6 @@
 .pnm-range-wrapper {
   width: 100%;
   cursor: pointer;
-  padding-top: 1rem;
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -168,6 +170,17 @@
   height: 0.5rem;
   cursor: pointer;
   background: var(--clrDetail);
+}
+.pnm-range-track::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.volume .pnm-range-track::before {
+  inset: -0.5rem 0;
+}
+.seek .pnm-range-track::before {
+  top: -0.5rem;
 }
 .pnm-range-progress {
   position: absolute;
@@ -186,4 +199,8 @@
   width: 0.75rem;
   height: 1.5rem;
   background: var(--clrText);
+}
+.volume {
+  flex-grow: 1;
+  width: 10rem;
 }

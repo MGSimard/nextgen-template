@@ -25,6 +25,8 @@ const formatTime = (seconds: number) => {
     .padStart(2, "0")}`;
 };
 
+const initialVolume = 25;
+
 export function AudioPlayer() {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -33,9 +35,10 @@ export function AudioPlayer() {
   const [isLoading, setIsLoading] = useState(true);
   const [wasPlayingBeforeSeek, setWasPlayingBeforeSeek] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
-  const seekerRef = useRef<HTMLDivElement>(null);
+  const [volume, setVolume] = useState(initialVolume);
   const audioPlayerRef = useRef<HTMLAudioElement>(null);
-  const initialVolume = 25;
+  const seekerRef = useRef<HTMLDivElement>(null);
+  const volumeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setDuration(0);
@@ -177,10 +180,34 @@ export function AudioPlayer() {
     setCurrentTime(newTime);
   };
 
-  const handleVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const audioPlayer = audioPlayerRef.current;
-    if (!audioPlayer) return;
-    audioPlayer.volume = toLogarithmicVolume(Number(e.target.value));
+  // Now we do for volume the same thing we did for seek bar
+
+  const handleVolumeStart = (e: React.PointerEvent<HTMLDivElement>) => {
+    const volumeBar = volumeRef.current;
+    if (!volumeBar) return;
+    volumeBar.setPointerCapture(e.pointerId);
+    setIsDragging(true);
+  };
+  const handleVolumeMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    updateVolumePosition(e);
+  };
+  const handleVolumeEnd = (e: React.PointerEvent<HTMLDivElement>) => {
+    const volumeBar = volumeRef.current;
+    if (!volumeBar || !isDragging) return;
+    volumeBar.releasePointerCapture(e.pointerId);
+    setIsDragging(false);
+  };
+
+  const updateVolumePosition = (e: React.PointerEvent<HTMLDivElement>) => {
+    const volumeBar = volumeRef.current;
+    const audio = audioPlayerRef.current;
+    if (!volumeBar || !audio || duration <= 0) return;
+    const rect = volumeBar.getBoundingClientRect();
+    const position = Math.max(0, Math.min((e.clientX - rect.left) / rect.width, 1));
+    const newVolume = position * 100;
+    audio.volume = toLogarithmicVolume(newVolume);
+    setVolume(newVolume);
   };
 
   return (
@@ -208,21 +235,23 @@ export function AudioPlayer() {
             <button type="button" onClick={handleNextTrack} disabled={isLoading}>
               <IconForward aria-label="Next" />
             </button>
-            <input
-              id="pnm-volume"
-              type="range"
-              min="0"
-              max="100"
-              defaultValue={initialVolume}
-              onChange={handleVolume}
+            <div
+              ref={volumeRef}
+              className="pnm-range-wrapper volume"
               aria-label="Volume"
-              step="any"
-            />
+              onPointerDown={handleVolumeStart}
+              onPointerMove={handleVolumeMove}
+              onPointerUp={handleVolumeEnd}
+              onPointerCancel={handleVolumeEnd}>
+              <div className="pnm-range-track">
+                <div className="pnm-range-thumb" style={{ left: `${volume}%` }}></div>
+              </div>
+            </div>
           </div>
         </div>
         <div
           ref={seekerRef}
-          className="pnm-range-wrapper"
+          className="pnm-range-wrapper seek"
           aria-label="Seek"
           onPointerDown={handleSeekStart}
           onPointerMove={handleSeeking}
@@ -230,10 +259,8 @@ export function AudioPlayer() {
           onPointerCancel={handleSeekEnd}>
           <div className="pnm-range-track">
             <div className="pnm-range-progress" style={{ width: `${(currentTime / duration) * 100}%` }}></div>
-            <div className="pnm-range-thumb" style={{ left: `${(currentTime / duration) * 100}%` }}></div>
           </div>
         </div>
-        <div></div>
       </div>
     </div>
   );
