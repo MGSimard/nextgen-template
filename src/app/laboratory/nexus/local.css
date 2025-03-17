@@ -24,6 +24,7 @@ section > :not(:last-child) {
   height: 12rem;
   border-radius: 999rem;
   margin-bottom: 1rem;
+  overflow: hidden;
 }
 #pnt-clock svg {
   display: block;
@@ -35,17 +36,16 @@ section > :not(:last-child) {
   position: absolute;
   top: 50%;
   left: 50%;
+  width: 50%;
+  height: 0.3rem;
   background: var(--clrText);
   transform-origin: left center;
-  clip-path: polygon(20% 50%, 100% 100%, 100% 0);
 }
 #pnt-hour-hand {
-  width: 35%;
-  height: 3px;
+  clip-path: polygon(40% 50%, 100% 100%, 100% 0);
 }
 #pnt-minute-hand {
-  width: 45%;
-  height: 2px;
+  clip-path: polygon(10% 50%, 100% 100%, 100% 0);
 }
 #pnt-numbers {
   font-family: var(--GeistMono);
