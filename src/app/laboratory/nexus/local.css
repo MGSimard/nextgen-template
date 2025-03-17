@@ -204,6 +204,7 @@ main:has(#proto-nexus) {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  touch-action: none;
 }
 .pnm-range-wrapper:active {
   cursor: grabbing;
