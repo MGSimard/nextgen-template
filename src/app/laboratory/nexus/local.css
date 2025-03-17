@@ -4,6 +4,10 @@
 #proto-nexus * {
   border: 1px solid rgba(0, 225, 255, 0.42);
 } */
+/* These lab experiments aren't made for this site's conventions so need to run an unset */
+section > :not(:last-child) {
+  margin-bottom: 0;
+}
 /* CONTAINER */
 #proto-nexus {
   flex-grow: 1;
@@ -13,13 +17,13 @@
   gap: 4rem;
   text-align: center;
 }
-
 /* CLOCK */
 #pnt-clock {
   position: relative;
   width: 12rem;
   height: 12rem;
   border-radius: 999rem;
+  margin-bottom: 1rem;
 }
 #pnt-clock svg {
   display: block;
@@ -44,10 +48,12 @@
   height: 2px;
 }
 #pnt-numbers {
+  font-family: var(--GeistMono);
   font-weight: 500;
 }
 #pnt-numbers span {
   display: block;
+  font-family: var(--GeistSans);
   font-size: 0.8em;
   font-weight: 400;
 }
