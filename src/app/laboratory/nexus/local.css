@@ -120,17 +120,17 @@ main:has(#proto-nexus) {
   display: flex;
   align-items: stretch;
   gap: 2rem;
-  width: 100%;
-  max-width: 80rem;
   padding: 0.5rem;
+  max-width: 80rem;
+  width: 100%;
   font-size: 0.8em;
   background: var(--clrBgLight);
   overflow: hidden;
 }
 #proto-nexus-music img {
   flex-shrink: 0;
-  width: 5rem;
   min-height: 5rem;
+  width: 5rem;
   object-fit: cover;
   border: 1px solid var(--clrBorder);
 }
