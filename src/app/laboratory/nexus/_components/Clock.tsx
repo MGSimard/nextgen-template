@@ -2,6 +2,14 @@
 import { IconClock } from "../../_components/Icons";
 import { useState, useEffect } from "react";
 
+function formatTime(date: Date): string {
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const displayHours = hours % 12 || 12;
+  const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
+  return `${displayHours}:${displayMinutes}`;
+}
+
 export function Clock() {
   const [currentTime, setCurrentTime] = useState<Date | null>(null);
   const formattedTime = currentTime ? formatTime(currentTime) : "";
@@ -41,13 +49,4 @@ export function Clock() {
       </div>
     </div>
   );
-}
-
-function formatTime(date: Date): string {
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  const displayHours = hours % 12 || 12;
-  const displayMinutes = minutes < 10 ? `0${minutes}` : minutes;
-
-  return `${displayHours}:${displayMinutes}`;
 }
