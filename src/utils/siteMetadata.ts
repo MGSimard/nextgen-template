@@ -26,6 +26,7 @@ export const siteMetadata: Metadata = {
     title: "NextGen Template",
     description: "A Next.js template by MGSimard.",
     url: "https://nextgen-template.vercel.app",
+    type: "website",
     siteName: "NextGen Template",
     images: [{ url: "/shared/opengraph-image.png", width: 1200, height: 600 }],
   },
