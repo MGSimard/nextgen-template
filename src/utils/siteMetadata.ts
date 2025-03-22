@@ -9,6 +9,7 @@ import type { Metadata } from "next";
 
 export const siteMetadata: Metadata = {
   authors: [{ name: "MGSimard", url: "https://mgsimard.dev" }],
+  applicationName: "NextGen Template",
   title: {
     default: "NextGen Template",
     template: "NextGen | %s",
