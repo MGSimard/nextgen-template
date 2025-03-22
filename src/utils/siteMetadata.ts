@@ -15,7 +15,7 @@ export const siteMetadata: Metadata = {
     template: "NextGen | %s",
   },
   description: "A Next.js template by MGSimard.",
-  manifest: "https://nextgen-template.vercel.app/manifest.webmanifest",
+  manifest: "/manifest.webmanifest",
   icons: [
     { rel: "shortcut icon", url: "/favicons/favicon.ico" },
     { rel: "icon", type: "image/png", sizes: "96x96", url: "/favicons/icon.png" },
@@ -27,13 +27,13 @@ export const siteMetadata: Metadata = {
     description: "A Next.js template by MGSimard.",
     url: "https://nextgen-template.vercel.app",
     siteName: "NextGen Template",
-    images: [{ url: "https://nextgen-template.vercel.app/shared/opengraph-image.png", width: 1200, height: 600 }],
+    images: [{ url: "/shared/opengraph-image.png", width: 1200, height: 600 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "NextGen Template",
     description: "A Next.js template by MGSimard.",
-    images: ["https://nextgen-template.vercel.app/shared/twitter-image.png"],
+    images: ["/shared/twitter-image.png"],
     creator: "@MGSimard",
   },
 };
