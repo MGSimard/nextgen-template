@@ -36,5 +36,6 @@ export const siteMetadata: Metadata = {
     description: "A Next.js template by MGSimard.",
     images: ["/shared/twitter-image.png"],
     creator: "@MGSimard",
+    site: "@MGSimard",
   },
 };
