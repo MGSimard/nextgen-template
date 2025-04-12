@@ -31,6 +31,7 @@ Its main purpose is for quickstarting my own personal projects with a bleeding e
 | Vercel      | -               | Hosting               | [vercel.com](https://vercel.com/docs)                                            |
 | next-themes | 0.4.6           | Theme Toggling        | [github.com/pacocoursey/next-themes](https://github.com/pacocoursey/next-themes) |
 | Sonner      | 2.0.3           | UI Notifications      | [sonner.emilkowal.ski](https://sonner.emilkowal.ski/getting-started)             |
+| React Scan  | 0.3.3           | Performance Debugging | [react-scan.com](https://react-scan.com)                                         |
 
 </td></tr> </table>
 

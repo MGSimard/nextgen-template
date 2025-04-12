@@ -130,4 +130,5 @@ const techStack = [
     "github.com/pacocoursey/next-themes",
   ],
   ["Sonner", "2.0.3", "UI Notifications", "https://sonner.emilkowal.ski/getting-started", "sonner.emilkowal.ski"],
+  ["React Scan", "0.3.3", "Performance Debugging", "https://react-scan.com", "react-scan.com"],
 ];
