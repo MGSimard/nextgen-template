@@ -26,6 +26,7 @@ Its main purpose is for quickstarting my own personal projects with a bleeding e
 | Zod         | 3.24.2          | Validation            | [zod.dev](https://zod.dev/)                                                      |
 | ESLint      | 9.24.0          | Flat Config           | [eslint.org](https://eslint.org/docs/latest/)                                    |
 | t3-oss/env  | 0.12.0          | .env Type Safety      | [create.t3.gg](https://create.t3.gg/en/usage/env-variables)                      |
+| Node        | 23.8.0          | Runtime Environment   | [nodejs.org](https://nodejs.org)                                                 |
 | pnpm        | 10.6.4          | Package Manager       | [pnpm.io](https://pnpm.io/motivation)                                            |
 | Vercel      | -               | Hosting               | [vercel.com](https://vercel.com/docs)                                            |
 | next-themes | 0.4.6           | Theme Toggling        | [github.com/pacocoursey/next-themes](https://github.com/pacocoursey/next-themes) |

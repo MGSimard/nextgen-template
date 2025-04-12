@@ -119,6 +119,7 @@ const techStack = [
   ["Zod", "3.24.2", "Validation", "https://zod.dev", "zod.dev"],
   ["ESLint", "9.24.0", "Flat Config", "https://eslint.org/docs/latest", "eslint.org"],
   ["t3-oss/env", "0.12.0", ".env Type Safety", "https://create.t3.gg/en/usage/env-variables", "create.t3.gg"],
+  ["Node", "23.8.0", "Runtime Environment", "https://nodejs.org", "nodejs.org"],
   ["pnpm", "10.6.4", "Package Manager", "https://pnpm.io/motivation", "pnpm.io"],
   ["Vercel", "-", "Hosting", "https://vercel.com/docs", "vercel.com"],
   [
