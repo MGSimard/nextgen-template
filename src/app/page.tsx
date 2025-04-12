@@ -108,18 +108,18 @@ export default function PageHome() {
 }
 
 const techStack = [
-  ["Next.js", "15.3.0-canary.10", "FullStack Environment", "https://nextjs.org/docs", "nextjs.org"],
-  ["React", "19.0.0", "Compiler Enabled", "https://react.dev", "react.dev"],
-  ["TypeScript", "5.8.2", "Type Safety", "https://www.typescriptlang.org/docs", "typescriptlang.org"],
-  ["Neon", "0.10.4", "Database", "https://neon.tech/docs/introduction", "neon.tech"],
+  ["Next.js", "15.3.1-canary.6", "FullStack Environment", "https://nextjs.org/docs", "nextjs.org"],
+  ["React", "19.1.0", "Compiler Enabled", "https://react.dev", "react.dev"],
+  ["TypeScript", "5.8.3", "Type Safety", "https://www.typescriptlang.org/docs", "typescriptlang.org"],
+  ["Neon", "1.0.0", "Database", "https://neon.tech/docs/introduction", "neon.tech"],
   ["PostgreSQL", "3.4.5", "Database Management", "https://www.postgresql.org/docs", "postgresql.org"],
   ["Drizzle", "0.40.1", "ORM", "https://orm.drizzle.team/docs/overview", "orm.drizzle.team"],
   ["Drizzle Kit", "0.30.5", "Database Migration", "https://orm.drizzle.team/docs/kit-overview", "orm.drizzle.team"],
-  ["Better Auth", "1.2.4", "Authentication", "https://www.better-auth.com/docs/introduction", "better-auth.com"],
+  ["Better Auth", "1.2.5", "Authentication", "https://www.better-auth.com/docs/introduction", "better-auth.com"],
   ["Zod", "3.24.2", "Validation", "https://zod.dev", "zod.dev"],
-  ["ESLint", "9.22.0", "Flat Config", "https://eslint.org/docs/latest", "eslint.org"],
+  ["ESLint", "9.24.0", "Flat Config", "https://eslint.org/docs/latest", "eslint.org"],
   ["t3-oss/env", "0.12.0", ".env Type Safety", "https://create.t3.gg/en/usage/env-variables", "create.t3.gg"],
-  ["pnpm", "10.6.3", "Package Manager", "https://pnpm.io/motivation", "pnpm.io"],
+  ["pnpm", "10.6.4", "Package Manager", "https://pnpm.io/motivation", "pnpm.io"],
   ["Vercel", "-", "Hosting", "https://vercel.com/docs", "vercel.com"],
   [
     "next-themes",
@@ -128,5 +128,5 @@ const techStack = [
     "https://github.com/pacocoursey/next-themes",
     "github.com/pacocoursey/next-themes",
   ],
-  ["Sonner", "2.0.1", "UI Notifications", "https://sonner.emilkowal.ski/getting-started", "sonner.emilkowal.ski"],
+  ["Sonner", "2.0.3", "UI Notifications", "https://sonner.emilkowal.ski/getting-started", "sonner.emilkowal.ski"],
 ];

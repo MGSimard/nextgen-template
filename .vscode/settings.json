@@ -1,3 +1,4 @@
 {
-  "editor.minimap.enabled": true
+  "editor.minimap.enabled": true,
+  "postman.settings.dotenv-detection-notification-visibility": false
 }
