@@ -14,7 +14,7 @@ export default tseslint.config(
   ...compat.extends("next/core-web-vitals"),
   {
     plugins: {
-      reactCompiler,
+      "react-compiler": reactCompiler,
       drizzle,
     },
     languageOptions: {
