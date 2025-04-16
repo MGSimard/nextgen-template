@@ -20,9 +20,9 @@ Its main purpose is for quickstarting my own personal projects with a bleeding e
 | TypeScript  | 5.8.3           | Type Safety           | [typescriptlang.org](https://www.typescriptlang.org/docs/)                       |
 | Neon        | 1.0.0           | Database              | [neon.tech](https://neon.tech/docs/introduction)                                 |
 | PostgreSQL  | 3.4.5           | Database Management   | [postgresql.org](https://www.postgresql.org/docs/)                               |
-| Drizzle     | 0.41.0          | ORM                   | [orm.drizzle.team](https://orm.drizzle.team/docs/overview)                       |
-| Drizzle Kit | 0.30.6          | Database Migration    | [orm.drizzle.team](https://orm.drizzle.team/docs/kit-overview)                   |
-| Better Auth | 1.2.5           | Authentication        | [better-auth.com](https://www.better-auth.com/docs/introduction)                 |
+| Drizzle     | 0.42.0          | ORM                   | [orm.drizzle.team](https://orm.drizzle.team/docs/overview)                       |
+| Drizzle Kit | 0.31.0          | Database Migration    | [orm.drizzle.team](https://orm.drizzle.team/docs/kit-overview)                   |
+| Better Auth | 1.2.7           | Authentication        | [better-auth.com](https://www.better-auth.com/docs/introduction)                 |
 | Zod         | 3.24.2          | Validation            | [zod.dev](https://zod.dev/)                                                      |
 | ESLint      | 9.24.0          | Flat Config           | [eslint.org](https://eslint.org/docs/latest/)                                    |
 | t3-oss/env  | 0.12.0          | .env Type Safety      | [create.t3.gg](https://create.t3.gg/en/usage/env-variables)                      |
