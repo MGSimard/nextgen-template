@@ -263,5 +263,5 @@ For more info, view my portfolio at [mgsimard.dev](https://mgsimard.dev).
 - [ ] Deal with signout redirection not working if signing out when on a 404-type page
 - [ ] User settings page
 - [ ] Account/User deletion
-- [ ] Figure out visual loading state to middleware protected routes (might devolve into layout/route auth instead of middleware tbh)
+- [ ] Figure out visual loading state to middleware protected routes (might devolve into layout/route auth instead of middleware tbh) - UPDATE: Look into useLinkStatus for this, new thing with next 15.3
 - [ ] App-wide cleanup
